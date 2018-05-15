@@ -6,12 +6,13 @@ class TdGameView extends BaseSpriteView implements IUpdate {
     //public turrets:Array<TdGameTurret>;
     //public monsters:Array<TdGameMonster>;
     //public bullets: Array<TdGameBullet>;
-    public spriteSkills: Array<SpriteSkill>;
+    public static spriteSkills: Object;
     private selectPanel: TDSelectPanel;
     public constructor($controller: BaseController, $parent: egret.DisplayObjectContainer) {
         super($controller, $parent);
         this._id = App.ModuleManager.generateModuleId();
         this.spriteLayer = new egret.DisplayObjectContainer();
+        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddedToStage, this);
     }
     public isRunning = true;
 
@@ -19,6 +20,10 @@ class TdGameView extends BaseSpriteView implements IUpdate {
     public get type(): string { return TdGameView._type; }
 
     private _id: number;
+    public onAddedToStage(e: egret.Event): void{
+        this.initSpriteSkills();
+    }
+
     public get Id() { return this._id; }
 
     private lastTime: number = 0;
@@ -45,6 +50,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             td = new TdGameTurret();
             td.Parse(data.turret[i]);
             td.load(this.spriteLayer);
+            //td.load(this.spriteLayer);
         }
     }
     private action: any[];
@@ -106,6 +112,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
     }
 
     public initSpriteSkills(): void {
+        TdGameView.spriteSkills = {};
         let highNoon = new SpriteSkill();
         highNoon.name = "HighNoon";
         highNoon.multiple = true;
@@ -114,7 +121,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             property: 'Hp',
             value: -100
         });
-        this.spriteSkills.push(highNoon);
+        TdGameView.spriteSkills[highNoon.name]=highNoon;
     }
 
     public open(...param: any[]): void {

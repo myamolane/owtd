@@ -143,7 +143,10 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         this.name = obj.name;
         this.x = parseInt(obj.x);
         this.y = parseInt(obj.y);
-        this.skills = obj.skills;
+        obj.skills.forEach((skill) =>{
+            if (TdGameView.spriteSkills.hasOwnProperty(skill))
+                this.skills.push(TdGameView.spriteSkills[skill]);
+        });
         console.log(this.skills);
         this.parseSkin(obj.type);
     }

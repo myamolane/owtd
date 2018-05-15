@@ -17,7 +17,7 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
     public hp: number = 100;
     public hpMax: number = 100;
     public atk: number = 1;
-    public skills: Array<string> = [];
+    public skills: Array<SpriteSkill> = [];
     public static Total = 0;
     private direction: string = "";
 
