@@ -1,0 +1,431 @@
+{
+    "groups": [
+        {
+            "keys": "skill_HighNoon_png, bullet1,num_fnt,map_1_sprite_json,sprite1_left_json,sprite1_left_png,sprite1_up_json,sprite1_up_png,sprite1_down_json,sprite1_down_png,sprite1_right_json,sprite1_right_png,map_1_turret_json, panelbackground,turretskin,turretskin0_json,turretskin0_png,turretskin1_json,turretskin1_png,turretskin2_json,turretskin2_png,turretskin3_json,turretskin3_png,map_1_png,logo_twink_json,logo_twink_png,btn_close,home_bg,btn_wrong,bitmapFont,table_activity,table_bg,table_box_down,table_box_down_2,table_box_middle,table_box_up,table_cloud_top,table_cloud_bottom,btn_shrink_bg,btn_shrink,menu_bg,btn_mail,btn_mission,btn_activity,table_task,table_mail,task_bg,icon_diamond,icon_experience,icon_fertilization,icon_gold,icon_friend,icon_more,icon_shop,icon_warehouse,icon_factory,icon_name,icon_head,icon_line,icon_LV,icon_badge,table_shop,table_tittle,table_warehouse,icon_factory_tittle,tabBar_selected_down,text_fertilizer01,text_fertilizer02,text_seed01,text_seed02,tabBar_down,sto_table_tittle,card_bg,icon_fertilizer02,icon_fertilizer03,icon_fertilizer04,icon_fertilizer05,icon_02,bbs,text_fruit_01,text_fruit_02,text_fruit_juice_01,text_fruit_juice_02,icon_sale",
+            "name": "preload_ui"
+        }
+    ],
+    "resources": [
+        {
+            "name": "skill_HighNoon_png",
+            "type": "image",
+            "url": "assets/tdGame/skill/HighNoon.png"
+        },
+        {
+            "name": "bullet1",
+            "type": "image",
+            "url": "assets/tdGame/bullet/bullet1.png"
+        },
+        {
+            "name": "num_fnt",
+            "type": "font",
+            "url": "assets/tdGame/num.fnt"
+        },
+        {
+            "name": "sprite1_left_json",
+            "type": "json",
+            "url": "assets/tdgame/sprite/sprite1_left.json"
+        },
+        {
+            "name": "sprite1_left_png",
+            "type": "image",
+            "url": "assets/tdgame/sprite/sprite1_left.png"
+        },
+        {
+            "name": "sprite1_up_json",
+            "type": "json",
+            "url": "assets/tdgame/sprite/sprite1_up.json"
+        },
+        {
+            "name": "sprite1_up_png",
+            "type": "image",
+            "url": "assets/tdgame/sprite/sprite1_up.png"
+        },
+        {
+            "name": "sprite1_down_json",
+            "type": "json",
+            "url": "assets/tdgame/sprite/sprite1_down.json"
+        },
+        {
+            "name": "sprite1_down_png",
+            "type": "image",
+            "url": "assets/tdgame/sprite/sprite1_down.png"
+        },
+        {
+            "name": "sprite1_right_json",
+            "type": "json",
+            "url": "assets/tdgame/sprite/sprite1_right.json"
+        },
+        {
+            "name": "sprite1_right_png",
+            "type": "image",
+            "url": "assets/tdgame/sprite/sprite1_right.png"
+        },
+        {
+            "name": "map_1_sprite_json",
+            "type": "json",
+            "url": "assets/tdgame/maps/1/sprite.json"
+        },
+        {
+            "name": "panelbackground",
+            "type": "image",
+            "url": "assets/tdgame/panelbackground.jpg"
+        },
+        {
+            "name": "turretskin",
+            "type": "json",
+            "url": "assets/tdgame/turretskin.json"
+        },
+        {
+            "name": "turretskin0_json",
+            "type": "json",
+            "url": "assets/tdgame/td/turretskin0.json"
+        },
+        {
+            "name": "turretskin0_png",
+            "type": "image",
+            "url": "assets/tdgame/td/turretskin0.png"
+        },
+        {
+            "name": "turretskin1_json",
+            "type": "json",
+            "url": "assets/tdgame/td/turretskin1.json"
+        },
+        {
+            "name": "turretskin1_png",
+            "type": "image",
+            "url": "assets/tdgame/td/turretskin1.png"
+        },
+        {
+            "name": "turretskin2_json",
+            "type": "json",
+            "url": "assets/tdgame/td/turretskin2.json"
+        },
+        {
+            "name": "turretskin2_png",
+            "type": "image",
+            "url": "assets/tdgame/td/turretskin2.png"
+        },
+        {
+            "name": "turretskin3_json",
+            "type": "json",
+            "url": "assets/tdgame/td/turretskin3.json"
+        },
+        {
+            "name": "turretskin3_png",
+            "type": "image",
+            "url": "assets/tdgame/td/turretskin3.png"
+        },
+        {
+            "name": "map_1_turret_json",
+            "type": "json",
+            "url": "assets/tdgame/maps/1/turret.json"
+        },
+        {
+            "name": "map_1_png",
+            "type": "image",
+            "url": "assets/tdgame/maps/1/map.png"
+        },
+        {
+            "name": "logo_twink_json",
+            "type": "json",
+            "url": "assets/animation/logo_twink/logo_twink_mc.json"
+        },
+        {
+            "name": "logo_twink_png",
+            "type": "image",
+            "url": "assets/animation/logo_twink/logo_twink_tex.png"
+        },
+        {
+            "name": "home_bg",
+            "type": "image",
+            "url": "assets/bg.jpg"
+        },
+        {
+            "name": "btn_wrong",
+            "type": "image",
+            "url": "assets/example/btn_wrong.png"
+        },
+        {
+            "name": "btn_close",
+            "type": "image",
+            "url": "assets/example/btn_close.png"
+        },
+        {
+            "name": "table_activity",
+            "type": "image",
+            "url": "assets/example/table_activity.png"
+        },
+        {
+            "name": "table_bg",
+            "type": "image",
+            "url": "assets/example/table_bg.png"
+        },
+        {
+            "name": "table_box_down",
+            "type": "image",
+            "url": "assets/example/table_box_down.png"
+        },
+        {
+            "name": "table_box_down_2",
+            "type": "image",
+            "url": "assets/example/table_box_down_.png"
+        },
+        {
+            "name": "table_box_middle",
+            "type": "image",
+            "url": "assets/example/table_box_middle.png"
+        },
+        {
+            "name": "table_box_up",
+            "type": "image",
+            "url": "assets/example/table_box_up.png"
+        },
+        {
+            "name": "table_cloud_top",
+            "type": "image",
+            "url": "assets/example/table_cloud.png"
+        },
+        {
+            "name": "table_cloud_bottom",
+            "type": "image",
+            "url": "assets/example/table_cloud1.png"
+        },
+        {
+            "name": "btn_shrink_bg",
+            "type": "image",
+            "url": "assets/example/btn_shrink_bg.png"
+        },
+        {
+            "name": "btn_shrink",
+            "type": "image",
+            "url": "assets/example/btn_shrink.png"
+        },
+        {
+            "name": "menu_bg",
+            "scale9grid": "23,29,29,24",
+            "type": "image",
+            "url": "assets/example/menu_bg.png"
+        },
+        {
+            "name": "btn_mail",
+            "type": "image",
+            "url": "assets/example/btn_mail.png"
+        },
+        {
+            "name": "btn_mission",
+            "type": "image",
+            "url": "assets/example/btn_mission.png"
+        },
+        {
+            "name": "btn_activity",
+            "type": "image",
+            "url": "assets/example/btn_activity.png"
+        },
+        {
+            "name": "table_task",
+            "type": "image",
+            "url": "assets/example/table_task.png"
+        },
+        {
+            "name": "table_mail",
+            "type": "image",
+            "url": "assets/example/table_mail.png"
+        },
+        {
+            "name": "task_bg",
+            "type": "image",
+            "url": "assets/example/task_bg.png"
+        },
+        {
+            "name": "icon_diamond",
+            "type": "image",
+            "url": "assets/example/icon_diamond.png"
+        },
+        {
+            "name": "icon_experience",
+            "type": "image",
+            "url": "assets/example/icon_experience.png"
+        },
+        {
+            "name": "icon_fertilization",
+            "type": "image",
+            "url": "assets/example/icon_fertilization.png"
+        },
+        {
+            "name": "icon_gold",
+            "type": "image",
+            "url": "assets/example/icon_gold.png"
+        },
+        {
+            "name": "icon_friend",
+            "type": "image",
+            "url": "assets/example/icon_friend.png"
+        },
+        {
+            "name": "icon_more",
+            "type": "image",
+            "url": "assets/example/icon_more.png"
+        },
+        {
+            "name": "icon_shop",
+            "type": "image",
+            "url": "assets/example/icon_shop.png"
+        },
+        {
+            "name": "icon_warehouse",
+            "type": "image",
+            "url": "assets/example/icon_warehouse.png"
+        },
+        {
+            "name": "icon_factory",
+            "type": "image",
+            "url": "assets/example/icon_factory.png"
+        },
+        {
+            "name": "icon_name",
+            "type": "image",
+            "url": "assets/example/icon_name.png"
+        },
+        {
+            "name": "icon_head",
+            "type": "image",
+            "url": "assets/example/icon_head.png"
+        },
+        {
+            "name": "icon_line",
+            "type": "image",
+            "url": "assets/example/icon_line.png"
+        },
+        {
+            "name": "icon_LV",
+            "type": "image",
+            "url": "assets/example/icon_LV.png"
+        },
+        {
+            "name": "icon_badge",
+            "type": "image",
+            "url": "assets/example/icon_badge.png"
+        },
+        {
+            "name": "table_shop",
+            "type": "image",
+            "url": "assets/example/table_shop.png"
+        },
+        {
+            "name": "table_tittle",
+            "type": "image",
+            "url": "assets/example/table_tittle.png"
+        },
+        {
+            "name": "table_warehouse",
+            "type": "image",
+            "url": "assets/example/table_warehouse.png"
+        },
+        {
+            "name": "icon_factory_tittle",
+            "type": "image",
+            "url": "assets/example/icon_factory_tittle.png"
+        },
+        {
+            "name": "tabBar_selected_down",
+            "type": "image",
+            "url": "assets/example/tabBar_selected_down.png"
+        },
+        {
+            "name": "text_fertilizer01",
+            "type": "image",
+            "url": "assets/example/text_fertilizer01.png"
+        },
+        {
+            "name": "text_fertilizer02",
+            "type": "image",
+            "url": "assets/example/text_fertilizer02.png"
+        },
+        {
+            "name": "text_seed01",
+            "type": "image",
+            "url": "assets/example/text_seed01.png"
+        },
+        {
+            "name": "text_seed02",
+            "type": "image",
+            "url": "assets/example/text_seed02.png"
+        },
+        {
+            "name": "tabBar_down",
+            "type": "image",
+            "url": "assets/example/tabBar_down.png"
+        },
+        {
+            "name": "sto_table_tittle",
+            "type": "image",
+            "url": "assets/example/sto_table_tittle.png"
+        },
+        {
+            "name": "card_bg",
+            "type": "image",
+            "url": "assets/example/card_bg.png"
+        },
+        {
+            "name": "icon_fertilizer02",
+            "type": "image",
+            "url": "assets/example/icon_fertilizer02.png"
+        },
+        {
+            "name": "icon_fertilizer03",
+            "type": "image",
+            "url": "assets/example/icon_fertilizer03.png"
+        },
+        {
+            "name": "icon_fertilizer04",
+            "type": "image",
+            "url": "assets/example/icon_fertilizer04.png"
+        },
+        {
+            "name": "icon_fertilizer05",
+            "type": "image",
+            "url": "assets/example/icon_fertilizer05.png"
+        },
+        {
+            "name": "icon_02",
+            "type": "image",
+            "url": "assets/example/icon_02.png"
+        },
+        {
+            "name": "bbs",
+            "type": "image",
+            "url": "assets/example/bbs.png"
+        },
+        {
+            "name": "text_fruit_01",
+            "type": "image",
+            "url": "assets/example/text_fruit_01.png"
+        },
+        {
+            "name": "text_fruit_02",
+            "type": "image",
+            "url": "assets/example/text_fruit_02.png"
+        },
+        {
+            "name": "text_fruit_juice_01",
+            "type": "image",
+            "url": "assets/example/text_fruit_juice_01.png"
+        },
+        {
+            "name": "text_fruit_juice_02",
+            "type": "image",
+            "url": "assets/example/text_fruit_juice_02.png"
+        },
+        {
+            "name": "icon_sale",
+            "type": "image",
+            "url": "assets/example/icon_sale.png"
+        },
+        {
+            "name": "bitmapFont",
+            "type": "font",
+            "url": "font/font.fnt"
+        }
+    ]
+}
