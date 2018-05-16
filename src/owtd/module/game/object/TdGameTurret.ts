@@ -10,9 +10,9 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
     private skin: string;
     private radius: number;
     private glob: number;
-
+    private circle: egret.Shape;
     private lastTime: number = 0;
-    private radiusShap: egret.Shape;
+    private shape: egret.DisplayObject;
     private skillSelectPanel: TdSkillSelectPanel;
     private creatSp(): void {
 
@@ -28,20 +28,20 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         this.mc = new egret.MovieClip(mcFactory.generateMovieClipData(this.skin));
         this.addChild(this.mc);//添加到显示列表
 
-        this.mc.x = -this.mc.width / 2 + this.offsetx;
-        this.mc.y = -this.mc.height / 2 + this.offsety;
+        //this.mc.x = -this.mc.width / 2 + this.offsetx;
+        //this.mc.y = -this.mc.height / 2 + this.offsety;
 
         this.mc.gotoAndPlay(1, -1);
 
         this.mc.touchEnabled = true;
 
-        /*
-        var shap:egret.Shape = new egret.Shape();
-        shap.graphics.beginFill(0xffff60, 1);
-        shap.graphics.drawCircle(0, 0,2);
-        shap.graphics.endFill();
-        this.addChild(shap);
-        */
+        
+        this.shape = new egret.DisplayObject();
+        this.shape.width = this.mc.width;
+        this.shape.height = this.mc.height;
+        
+        this.addChild(this.shape);
+        
     }
 
     private creatBullet(source: TdGameSprite, target: TdGameSprite): void {
@@ -88,31 +88,35 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
     public load(parent: egret.DisplayObjectContainer): void {
         parent.addChild(this);
         this.creatSp();
-        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
         this.addEventListener(TdEvents.ENERGY_CHANGED, this.onEnergyChanged, this)
+        this.shape.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
         App.ModuleManager.registerModule(this);
         this.initSkillPanel();
     }
 
     public initSkillPanel(){
         let panel = new TdSkillSelectPanel(this.skills.map((skill) => skill.name));
-        panel.enableSkill("HighNoon");
-
+        //panel.enableSkill("HighNoon");
         panel.anchorOffsetX = panel.width >> 1;
         this.skillSelectPanel = panel;
         this.addChild(this.skillSelectPanel);
-        
-        console.log(this.skillSelectPanel.width);
     }
 
     public onEnergyChanged(e: egret.Event): void{
-        console.log('engegy changed')
+        this.skills.forEach((skill) => {
+            if (this.energy >= skill.energy)
+                this.enableSkill(skill);
+        });
     }
 
-    public onSkillEnable(skill: SpriteSkill){
-        
+    public enableSkill(skill: SpriteSkill){
+        this.skillSelectPanel.enableSkill(skill.name);
     }
 
+    public useSkill(skillName:string):void{
+        //this.skills[skillName]
+        console.log('use '+skillName);
+    }
     public release(): void {
         if (this.mc != null) {
             this.mc.stop();
@@ -120,7 +124,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         if (this.parent != null) {
             this.parent.removeChild(this);
         }
-        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
+        this.shape.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
         EventManager.removeEventListener(TdEvents.ENERGY_CHANGED, this.onEnergyChanged, this)
         App.ModuleManager.unRegisterModule(this);
     }
@@ -139,14 +143,14 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
     }
 
     private onTouchTab(e: egret.TouchEvent): void {
-        console.log(this.skillSelectPanel.width);
-        if (this.radiusShap == null) {
-            this.radiusShap = new egret.Shape();
-            this.radiusShap.graphics.beginFill(0xffff60, 1);
-            this.radiusShap.graphics.drawCircle(0, 0, this.radius);
-            this.radiusShap.graphics.endFill();
-            this.radiusShap.alpha = 0.2;
-            this.addChild(this.radiusShap);
+        console.log('touched');
+        if (this.circle == null) {
+            this.circle = new egret.Shape();
+            this.circle.graphics.beginFill(0xffff60, 1);
+            this.circle.graphics.drawCircle(0, 0, this.radius);
+            this.circle.graphics.endFill();
+            this.circle.alpha = 0.2;
+            this.addChild(this.circle);
         }
         App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.ShowSelectPanel, this.onChange, this)
         App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.SetSelectPanelPoint, new egret.Point(this.Point.x, this.Point.y+this.mc.height))
@@ -158,9 +162,9 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         this.parseSkin(item);
         this.creatSp();
 
-        if (this.radiusShap != null) {
-            this.removeChild(this.radiusShap);
-            this.radiusShap = null;
+        if (this.circle != null) {
+            this.removeChild(this.circle);
+            this.circle = null;
         }
     }
 
@@ -172,7 +176,6 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
             if (TdGameView.spriteSkills.hasOwnProperty(skill))
                 this.skills.push(TdGameView.spriteSkills[skill]);
         });
-        console.log(this.skills);
         this.parseSkin(obj.type);
     }
 

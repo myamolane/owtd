@@ -15,8 +15,6 @@ class TdGameController extends BaseController {
     private gameInit(mapId: number) {
         this.gameModel.mapId = mapId;
         this.gameModel.monsterNum = 200;
-        let test =new TdGameTurret();
-        console.log(test["Id"])
         App.ViewManager.open(ViewConst.TdGame, this.gameModel);
     }
     private showSelectPanel(callfun, callobj){

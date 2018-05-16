@@ -1,7 +1,7 @@
 class TdSkillSelectPanel extends egret.Sprite {
     private group: eui.Group;
     private static BasePath = "resource/assets/tdGame/skill/";
-    private skills = {};
+    private skills: Object = {};
     public constructor(skillNames: Array<string>) {
         super();
         this.group = new eui.Group();
@@ -11,13 +11,33 @@ class TdSkillSelectPanel extends egret.Sprite {
         hLayout.paddingTop = 10;
         hLayout.horizontalAlign = egret.HorizontalAlign.CENTER;
         this.group.layout = hLayout;
+        this.group.addEventListener(egret.Event.RESIZE, this.reposition, this);
         skillNames.forEach((skillName) => {
             let skill = new eui.Image();
             skill.source = TdSkillSelectPanel.BasePath + skillName + ".png";
+            skill.name = skillName;
+            skill.scaleX = 0.3;
+            skill.scaleY = 0.3;
             this.skills[skillName] = skill;
+            console.log(skill.width);
             skill.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchSkillImage, this);
         });
+        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddedToStage, this);
     }
+
+    public onAddedToStage(e: egret.Event): void{
+
+    }
+
+    public reposition():void{
+        console.log(this.width);
+        console.log(this.group.width);
+        //this.anchorOffsetX = this.group.width >> 1;
+        //this.anchorOffsetY = this.group.height + 32;
+        //this.x = - this.group.width >> 1;
+        this.y = - this.group.height;
+    }
+
     public enableSkill(skillName):void {
         let img = this.skills[skillName];
         if (!img)
@@ -25,6 +45,7 @@ class TdSkillSelectPanel extends egret.Sprite {
         if (this.group.contains(img))
             return;
         this.group.addChild(img);
+        
     }
     public disableSkill(skillName):void {
         let img = this.skills[skillName];
@@ -32,6 +53,6 @@ class TdSkillSelectPanel extends egret.Sprite {
             this.group.removeChild(img);
     }
     public onTouchSkillImage(e: egret.Event): void{
-        console.log(e.target)
+        (<TdGameTurret>this.parent).useSkill((<eui.Image>e.target).name);
     }
 }

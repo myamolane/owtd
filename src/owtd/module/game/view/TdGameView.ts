@@ -121,6 +121,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             property: 'Hp',
             value: -100
         });
+        highNoon.energy = 1;
         TdGameView.spriteSkills[highNoon.name] = highNoon;
     }
 

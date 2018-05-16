@@ -90,9 +90,7 @@ class TdGameMonster extends TdGameSprite {//implements IUpdate, ILoad{
     }
     private onHpChange(e: egret.Event): void {
         //this.hpImg.sethp(this.Hp, this.HpMax);
-        console.log('hp changed');
         if (this.hp <= 0) {
-            console.log('monster dead');
             EventManager.dispatchEvent(TdEvents.SPRITE_DEAD, this);
             this.release();
         }
