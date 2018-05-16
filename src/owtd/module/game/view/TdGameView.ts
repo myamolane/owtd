@@ -22,6 +22,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
     private _id: number;
     public onAddedToStage(e: egret.Event): void {
         this.initSpriteSkills();
+        CircleSkillTargetPanel.Ins.load(this);
     }
 
     public get Id() { return this._id; }

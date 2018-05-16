@@ -132,8 +132,12 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     public useSkill(skillName: string): void {
         //this.skills[skillName]
         console.log('use ' + skillName);
+        CircleSkillTargetPanel.Ins.showPanel(this.onSkillReleased, this);
     }
 
+    public onSkillReleased(){
+        console.log('skill relased');
+    }
 
 
     /**
