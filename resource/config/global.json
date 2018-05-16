@@ -1,6 +1,6 @@
 {
     "IsDebug":false,
-    "HttpSerever":"http://192.168.1.105:8001",
+    "HttpSerever":"http://localhost:8001",
     "SocketServer":"10.0.3.111",
     "SocketPort":"10001/ws",
     "ProtoFile":"simple_proto",

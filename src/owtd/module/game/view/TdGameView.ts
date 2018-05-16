@@ -53,7 +53,9 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             //td.load(this.spriteLayer);
         }
     }
+
     private action: any[];
+
     private creatAction(mapId): void {
         var data = RES.getRes("map_" + mapId + "_sprite_json");
         this.action = new Array();
@@ -85,6 +87,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             }
         }
     }
+
     private createHouse(): void {
         var house: House = new House();
         house.x = this.map.width;
@@ -92,6 +95,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         house.setHp(10);
         house.load(this.decorationLayer);
     }
+
     public initUI(): void {
         super.initUI();
         this.mapLayer = new egret.DisplayObjectContainer();
@@ -105,6 +109,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         this.selectPanel.load(this);
         //this.addChild(this.selectPanel)
     }
+
     public initData(): void {
         super.initData();
         this.startTime = egret.getTimer();
@@ -138,6 +143,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         //this.creatSp();
         App.ModuleManager.registerModule(this);
     }
+
     public close(...params: any[]): void {
         super.close(params);
         App.ModuleManager.unRegisterModule(this);
@@ -155,11 +161,12 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         EventManager.removeEventListener(TdEvents.ACTIVATION_OF_BULLET, this.onActivationBullet, this);
         EventManager.removeEventListener(TdEvents.HOUSE_DEAD, this.onHouseDead, this);
         EventManager.removeEventListener(TdEvents.MONSTER_DEAD, this.onMonsterDead, this);
-
     }
+
     private onMonsterDead(e: BaseEvent): void {
 
     }
+
     public onHouseDead(e: BaseEvent): void {
         App.ModuleManager.stop();
 
@@ -170,15 +177,19 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         panel.addEventListener(eui.UIEvent.CLOSING, function (e: eui.UIEvent) { location.reload() }, this);
         this.addChild(panel);
     }
+
     public showPanel(callfun, callobj): void {
         this.selectPanel.showPanel(callfun, callobj);
     }
+
     public setPanelPoint(point: egret.Point) {
         this.selectPanel.setPoint(point);
     }
+
     private onActivationBullet(e: BaseEvent): void {
         var bullet: TdGameBullet = new TdGameBullet();
         bullet.setTarget(e.object[0], e.object[1]);
         bullet.load(this.decorationLayer);
     }
+    
 }

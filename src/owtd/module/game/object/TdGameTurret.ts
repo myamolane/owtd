@@ -1,6 +1,6 @@
 // tower
 
-class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
+class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     public constructor() {
         super();
     }
@@ -12,7 +12,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
     private glob: number;
     private circle: egret.Shape;
     private lastTime: number = 0;
-    private shape: egret.DisplayObject;
+    private shape: egret.Shape;
     private skillSelectPanel: TdSkillSelectPanel;
     private creatSp(): void {
 
@@ -26,7 +26,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         }
 
         this.mc = new egret.MovieClip(mcFactory.generateMovieClipData(this.skin));
-        this.addChild(this.mc);//添加到显示列表
+        this.addChildAt(this.mc, 0);//添加到显示列表
 
         //this.mc.x = -this.mc.width / 2 + this.offsetx;
         //this.mc.y = -this.mc.height / 2 + this.offsety;
@@ -35,13 +35,8 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
 
         this.mc.touchEnabled = true;
 
-        
-        this.shape = new egret.DisplayObject();
-        this.shape.width = this.mc.width;
-        this.shape.height = this.mc.height;
-        
-        this.addChild(this.shape);
-        
+
+
     }
 
     private creatBullet(source: TdGameSprite, target: TdGameSprite): void {
@@ -55,7 +50,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
 
     }
 
-    
+
 
     private searchTarget(): void {
         var spriteList: Object = App.ModuleManager.getModuleList()[ModuleType.Sprite];
@@ -88,35 +83,21 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
     public load(parent: egret.DisplayObjectContainer): void {
         parent.addChild(this);
         this.creatSp();
-        this.addEventListener(TdEvents.ENERGY_CHANGED, this.onEnergyChanged, this)
+        this.touchEnabled = true;
+        this.shape = new egret.Shape();
+        this.shape.graphics.beginFill(0xfff, 0);
+        this.shape.graphics.drawRect(0, 0, this.mc.width, this.mc.height);
+        this.shape.graphics.endFill();
+        this.shape.touchEnabled = true;
+        this.addChild(this.shape);
+
+        this.addEventListener(TdEvents.ENERGY_CHANGED, this.onEnergyChanged, this);
+        //this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
         this.shape.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
         App.ModuleManager.registerModule(this);
         this.initSkillPanel();
     }
 
-    public initSkillPanel(){
-        let panel = new TdSkillSelectPanel(this.skills.map((skill) => skill.name));
-        //panel.enableSkill("HighNoon");
-        panel.anchorOffsetX = panel.width >> 1;
-        this.skillSelectPanel = panel;
-        this.addChild(this.skillSelectPanel);
-    }
-
-    public onEnergyChanged(e: egret.Event): void{
-        this.skills.forEach((skill) => {
-            if (this.energy >= skill.energy)
-                this.enableSkill(skill);
-        });
-    }
-
-    public enableSkill(skill: SpriteSkill){
-        this.skillSelectPanel.enableSkill(skill.name);
-    }
-
-    public useSkill(skillName:string):void{
-        //this.skills[skillName]
-        console.log('use '+skillName);
-    }
     public release(): void {
         if (this.mc != null) {
             this.mc.stop();
@@ -128,6 +109,31 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         EventManager.removeEventListener(TdEvents.ENERGY_CHANGED, this.onEnergyChanged, this)
         App.ModuleManager.unRegisterModule(this);
     }
+
+    public initSkillPanel() {
+        let panel = new TdSkillSelectPanel(this.skills.map((skill) => skill.name));
+        //panel.enableSkill("HighNoon");
+        panel.anchorOffsetX = panel.width >> 1;
+        this.skillSelectPanel = panel;
+        this.addChild(this.skillSelectPanel);
+    }
+
+    public onEnergyChanged(e: egret.Event): void {
+        this.skills.forEach((skill) => {
+            if (this.energy >= skill.energy)
+                this.enableSkill(skill);
+        });
+    }
+
+    public enableSkill(skill: SpriteSkill) {
+        this.skillSelectPanel.enableSkill(skill.name);
+    }
+
+    public useSkill(skillName: string): void {
+        //this.skills[skillName]
+        console.log('use ' + skillName);
+    }
+
 
 
     /**
@@ -153,8 +159,8 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
             this.addChild(this.circle);
         }
         App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.ShowSelectPanel, this.onChange, this)
-        App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.SetSelectPanelPoint, new egret.Point(this.Point.x, this.Point.y+this.mc.height))
-        
+        App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.SetSelectPanelPoint, new egret.Point(this.Point.x, this.Point.y + this.mc.height))
+
     }
 
     private onChange(item: string): void {
@@ -172,7 +178,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         this.name = obj.name;
         this.x = parseInt(obj.x);
         this.y = parseInt(obj.y);
-        obj.skills.forEach((skill) =>{
+        obj.skills.forEach((skill) => {
             if (TdGameView.spriteSkills.hasOwnProperty(skill))
                 this.skills.push(TdGameView.spriteSkills[skill]);
         });

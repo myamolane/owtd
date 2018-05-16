@@ -75,8 +75,7 @@ class LoginView extends BasePanelView {
         this.skipBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSkip, this);
     }
     public onSkip(): void {
-        
-        App.SceneManager.runScene(SceneConsts.TdGame, [1])
+        App.SceneManager.runScene(SceneConsts.TdGame, 1);
     }
     /**
      *对面板数据的初始化，用于子类继承

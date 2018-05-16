@@ -33,7 +33,6 @@ class Main extends egret.DisplayObjectContainer {
 
     private onAddToStage(event: egret.Event) {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-
         //注入自定义的素材解析器
         egret.registerImplementation("eui.IAssetAdapter", new AssetAdapter());
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
