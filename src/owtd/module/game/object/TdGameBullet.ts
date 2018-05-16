@@ -8,10 +8,12 @@ class TdGameBullet extends TdGameSprite{
     }
     private radius: number;
     private target: TdGameSprite;
+    private source: TdGameSprite;
     public atk: number = 10;
     public setTarget(source: TdGameSprite, target: TdGameSprite): void{
         this.x = source.x;
         this.y = source.y;
+        this.source = source;
         this.target = target;
         let bitmap: egret.Bitmap = new egret.Bitmap();
         bitmap.texture = RES.getRes("bullet1");
@@ -46,6 +48,7 @@ class TdGameBullet extends TdGameSprite{
             this.target.setHp(this.target.hp - this.atk);
             this.target = null;
             this.release();
+            this.source.Energy = this.source.energy + this.atk;
         }
         else {
             let targetSpeed: egret.Point = App.MathUtils.getSpeed(this.target.Point, this.Point, this.speed);

@@ -7,4 +7,5 @@ class TdEvents{
     public static MONSTER_ARRIVED = TdEvents.EVENT_BASE + "MONSTER_ARRIVED";
     public static HOUSE_DEAD = TdEvents.EVENT_BASE + "HOUSE_DEAD";
     public static MONSTER_DEAD = TdEvents.EVENT_BASE + "MONSTER_DEAD";
+    public static ENERGY_CHANGED = TdEvents.EVENT_BASE + "ENERGY_CHANGED";
 }

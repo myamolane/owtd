@@ -20,7 +20,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
     public get type(): string { return TdGameView._type; }
 
     private _id: number;
-    public onAddedToStage(e: egret.Event): void{
+    public onAddedToStage(e: egret.Event): void {
         this.initSpriteSkills();
     }
 
@@ -121,7 +121,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             property: 'Hp',
             value: -100
         });
-        TdGameView.spriteSkills[highNoon.name]=highNoon;
+        TdGameView.spriteSkills[highNoon.name] = highNoon;
     }
 
     public open(...param: any[]): void {
@@ -144,7 +144,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             let obj: any = this.spriteLayer.removeChildAt(0);
             (<ILoad>obj).release();
         }
-        while(this.decorationLayer.numChildren > 0){
+        while (this.decorationLayer.numChildren > 0) {
             let obj: any = this.decorationLayer.removeChildAt(0);
             (<ILoad>obj).release();
         }

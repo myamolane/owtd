@@ -18,6 +18,7 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
     public hpMax: number = 100;
     public atk: number = 1;
     public skills: Array<SpriteSkill> = [];
+    public energy: number = 0;
     public static Total = 0;
     private direction: string = "";
 
@@ -118,4 +119,8 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
         this.speed = value;
     }
 
+    public set Energy(value: number){
+        this.energy = value;
+        this.dispatchEvent(new egret.Event(TdEvents.ENERGY_CHANGED));
+    }
 }

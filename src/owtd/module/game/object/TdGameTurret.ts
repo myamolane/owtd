@@ -13,7 +13,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
 
     private lastTime: number = 0;
     private radiusShap: egret.Shape;
-
+    private skillSelectPanel: TdSkillSelectPanel;
     private creatSp(): void {
 
         var data = RES.getRes(this.skin + "_json");
@@ -55,6 +55,8 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
 
     }
 
+    
+
     private searchTarget(): void {
         var spriteList: Object = App.ModuleManager.getModuleList()[ModuleType.Sprite];
         var tempSp: TdGameMonster;
@@ -87,7 +89,28 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
         parent.addChild(this);
         this.creatSp();
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
+        this.addEventListener(TdEvents.ENERGY_CHANGED, this.onEnergyChanged, this)
         App.ModuleManager.registerModule(this);
+        this.initSkillPanel();
+    }
+
+    public initSkillPanel(){
+        let panel = new TdSkillSelectPanel(this.skills.map((skill) => skill.name));
+        panel.enableSkill("HighNoon");
+
+        panel.anchorOffsetX = panel.width >> 1;
+        this.skillSelectPanel = panel;
+        this.addChild(this.skillSelectPanel);
+        
+        console.log(this.skillSelectPanel.width);
+    }
+
+    public onEnergyChanged(e: egret.Event): void{
+        console.log('engegy changed')
+    }
+
+    public onSkillEnable(skill: SpriteSkill){
+        
     }
 
     public release(): void {
@@ -98,6 +121,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
             this.parent.removeChild(this);
         }
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
+        EventManager.removeEventListener(TdEvents.ENERGY_CHANGED, this.onEnergyChanged, this)
         App.ModuleManager.unRegisterModule(this);
     }
 
@@ -115,6 +139,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad{
     }
 
     private onTouchTab(e: egret.TouchEvent): void {
+        console.log(this.skillSelectPanel.width);
         if (this.radiusShap == null) {
             this.radiusShap = new egret.Shape();
             this.radiusShap.graphics.beginFill(0xffff60, 1);
