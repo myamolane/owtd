@@ -40,12 +40,6 @@ class BaseProxy {
      * @param paramObj 消息参数 例如: var paramObj:any = {"uName":uName, "uPass":uPass};
      */
     public async post(path:string, paramObj:any = null):Promise<any> {
-        //App.Http.send(path, callback, paramObj, egret.HttpMethod.POST);
-        // return App.Http.doRequest(path, paramObj, egret.HttpMethod.POST).then((res) =>{
-        //     console.log(res)
-        //     console.log(this)
-        //     return res;
-        // })
         return App.Http.request(path, paramObj, 'POST').then((res) =>{
             console.log(res)
             return res;

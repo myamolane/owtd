@@ -239,7 +239,7 @@ class App {
     public static get ModuleManager(): ModuleManager {
         return ModuleManager.getInstance();
     }
-
+    
     public static get MovieClipUtil(): MovieClipUtil {
         return MovieClipUtil.getInstance();
     }

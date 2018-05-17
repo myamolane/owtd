@@ -4,7 +4,11 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     public constructor() {
         super();
     }
-    public static type = ModuleType.Sprite;
+    //public static type = ModuleType.Sprite;
+    // public static type = ModuleType.Turret;
+    public get type(){
+        return ModuleType.Turret;
+    }
     private offsetx: number;
     private offsety: number;
     private skin: string;
@@ -14,6 +18,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     private lastTime: number = 0;
     private shape: egret.Shape;
     private skillSelectPanel: TdSkillSelectPanel;
+    public fireRate: number = 3000;
     private creatSp(): void {
 
         var data = RES.getRes(this.skin + "_json");
@@ -43,7 +48,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
 
         var nowTime: number = egret.getTimer();
         if (nowTime > this.lastTime) {
-            this.lastTime = nowTime + this.speed;//下次执行时间
+            this.lastTime = nowTime + this.fireRate;//下次执行时间
             EventManager.dispatchEvent(TdEvents.ACTIVATION_OF_BULLET, [source, target]);
             this.changOrientation(target.Point);
         }
@@ -53,7 +58,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
 
 
     private searchTarget(): void {
-        var spriteList: Object = App.ModuleManager.getModuleList()[ModuleType.Sprite];
+        var spriteList: Object = App.ModuleManager.getModuleList()[ModuleType.Monster];
         var tempSp: TdGameMonster;
 
         for (var key in spriteList) {
@@ -131,12 +136,17 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
 
     public useSkill(skillName: string): void {
         //this.skills[skillName]
-        console.log('use ' + skillName);
-        CircleSkillTargetPanel.Ins.showPanel(this.onSkillReleased, this);
+        this.touchEnabled = false;
+        this.addChild(CircleSkillTargetPanel.Ins);
+        CircleSkillTargetPanel.Ins.showPanel(this.onSkillReleased, this, TdGameView.spriteSkills[skillName]);
     }
 
-    public onSkillReleased(){
-        console.log('skill relased');
+    public onSkillReleased(skill:SpriteSkill, targets: Array<TdGameMonster>){
+        console.log(targets);
+        targets.forEach((target) => {
+            target.onEffect(skill.targetEffect);
+        });
+        this.onEffect(skill.sourceEffect);
     }
 
 
@@ -153,7 +163,6 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     }
 
     private onTouchTab(e: egret.TouchEvent): void {
-        console.log('touched');
         if (this.circle == null) {
             this.circle = new egret.Shape();
             this.circle.graphics.beginFill(0xffff60, 1);

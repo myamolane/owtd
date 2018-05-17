@@ -39,7 +39,8 @@ class Main extends egret.DisplayObjectContainer {
 
         //适配方式(全屏适配)
         //App.StageUtils.startFullscreenAdaptation(650, 1000, this.onResize);
-
+        
+        
         //初始化
         this.initScene();
         this.initModule();

@@ -1,37 +1,31 @@
-class BaseSkillTargetPanel extends FullPanel{
+class BaseSkillTargetPanel extends egret.DisplayObjectContainer{
     public type: string;
     public constructor() { super(); }
-    private static ins: BaseSkillTargetPanel;
-
-    public static get Ins(): BaseSkillTargetPanel {
-        if (this.ins == null) this.ins = new BaseSkillTargetPanel();
-        return this.ins;
-    }
+    private isOpen:boolean = false;
     //private text: string;
     private callObj: any;
     private callFunc: any;
-
-    public showPanel(callfunc, callObj) {
+    private skill: SpriteSkill;
+    public showPanel(callfunc, callObj, skill) {
         if (this.isOpen) {
             return;
         }
-        this.show(0);
         this.callObj = callObj;
         this.callFunc = callfunc;
-        
-        
+        this.skill = skill;
     }
 
     public closePanel() {
         if (!this.isOpen) {
             return;
         }
-        this.close();
-        
-        while(this.numChildren > 0){
-            this.removeChildAt(0);
-        }
+        this.parent.removeChild(this);
         this.callObj = null;
         this.callFunc = null;
+        this.skill = null;
+    }
+
+    public callBack(targets):void{
+        this.callFunc.apply(this.callObj, [this.skill, targets]);
     }
 }

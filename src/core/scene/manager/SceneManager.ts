@@ -48,10 +48,8 @@ class SceneManager extends BaseClass {
 
         var oldScene:BaseScene = this._scenes[this._currScene];
         if (oldScene) {
-            console.log('exit scene:'+this._currScene)
             oldScene.onExit();
         }
-        console.log('enter scene:'+nowScene)
         nowScene.onEnter.apply(nowScene, param);
         this._currScene = key;
     }

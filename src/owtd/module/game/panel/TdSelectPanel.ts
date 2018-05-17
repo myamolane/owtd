@@ -50,6 +50,7 @@ class TDSelectPanel extends FullPanel {
     private onTouchTab(e: egret.TouchEvent): void {
 
         if (e.target instanceof egret.MovieClip) {
+            
             this.callFun.apply(this.callObject, [e.target.name]);
         }
         this.closePanel();

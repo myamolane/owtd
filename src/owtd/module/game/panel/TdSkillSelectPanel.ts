@@ -19,8 +19,7 @@ class TdSkillSelectPanel extends egret.Sprite {
             skill.scaleX = 0.3;
             skill.scaleY = 0.3;
             this.skills[skillName] = skill;
-            console.log(skill.width);
-            skill.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchSkillImage, this);
+            skill.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchSkillImage, this);
         });
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddedToStage, this);
     }
@@ -30,11 +29,6 @@ class TdSkillSelectPanel extends egret.Sprite {
     }
 
     public reposition():void{
-        console.log(this.width);
-        console.log(this.group.width);
-        //this.anchorOffsetX = this.group.width >> 1;
-        //this.anchorOffsetY = this.group.height + 32;
-        //this.x = - this.group.width >> 1;
         this.y = - this.group.height;
     }
 

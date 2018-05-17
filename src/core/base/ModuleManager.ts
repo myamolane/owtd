@@ -36,6 +36,11 @@ class ModuleManager extends BaseClass{
             if (this._types.hasOwnProperty(type))
                 this._types[type] = true;
         }
+
+        public getModulesByType(type: string):Array<any>{
+            return this._modules[type];
+        }
+
         public registerModule(object:IUpdate): void {
             if (!this._modules[object.type])
                 this._modules[object.type] = {}

@@ -61,7 +61,6 @@ class MenuView extends BaseEuiView{
     }
 
     private menuClickHandler(e:egret.TouchEvent):void{
-        console.log(e.target)
         if(e.target == this.menu.taskBtn){
             this.playSound();
             App.ViewManager.open(ViewConst.Task);

@@ -27,32 +27,37 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
     }
 
     public onEffect(effect: GameEffect) {
-        let originMc = this.mc;
-        let newMc = App.MovieClipUtil.generateMc(this.name + "_" + effect.mc);
-        if (this.mc != null) {
-            this.mc.parent.removeChild(originMc);
-            originMc.stop();
+        if (effect.mc) {
+            let originMc = this.mc;
+            let newMc = App.MovieClipUtil.generateMc(this.name + "_" + effect.mc);
+            if (this.mc != null) {
+                this.mc.parent.removeChild(originMc);
+                originMc.stop();
+            }
+            this.mc = newMc;
+            this.addChild(newMc);
+            newMc.gotoAndPlay(0, effect.mcTime);
+            effect.mc = originMc.name;
         }
-        this.mc = newMc;
-        this.addChild(newMc);
-        newMc.gotoAndPlay(0, effect.mcTime);
         effect.effects.forEach((propertyEffect) => {
-            this[propertyEffect.property] += propertyEffect.value;
+            this[propertyEffect.property] = this[propertyEffect.property] + propertyEffect.value;
         });
-        effect.mc = originMc.name;
+
 
         if (effect.effectTime > 0) {
             App.TimerManager.doTimer(effect.effectTime, 1, (passTime: number, params: GameEffect) => {
-                let originMc = App.MovieClipUtil.generateMc(params.mc);
-                if (this.mc != null) {
-                    this.mc.parent.removeChild(this.mc);
-                    this.mc.stop();
+                if (params.mc) {
+                    let originMc = App.MovieClipUtil.generateMc(params.mc);
+                    if (this.mc != null) {
+                        this.mc.parent.removeChild(this.mc);
+                        this.mc.stop();
+                    }
+                    this.mc = originMc;
+                    this.addChild(this.mc);
+                    this.mc.gotoAndPlay(0, -1);
                 }
-                this.mc = originMc;
-                this.addChild(this.mc);
-                this.mc.gotoAndPlay(0, -1);
                 effect.effects.forEach((propertyEffect) => {
-                    this[propertyEffect.property] -= propertyEffect.value;
+                    this[propertyEffect.property] = this[propertyEffect.property] - propertyEffect.value;
                 });
             }, this, effect);
         }
@@ -110,6 +115,9 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
     public set Hp(value: number) {
         this.setHp(value);
     }
+    public get Hp(): number{
+        return this.hp;
+    }
 
     public set Atk(value: number) {
         this.atk = value;
@@ -119,7 +127,7 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
         this.speed = value;
     }
 
-    public set Energy(value: number){
+    public set Energy(value: number) {
         this.energy = value;
         this.dispatchEvent(new egret.Event(TdEvents.ENERGY_CHANGED));
     }

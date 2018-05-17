@@ -8,8 +8,12 @@ class TdGameMonster extends TdGameSprite {//implements IUpdate, ILoad{
 
     }
 
-    public static type = ModuleType.Sprite;
-
+    //public static type = ModuleType.Sprite;
+    // public static type = ModuleType.Monster;
+    public get type(){
+        return ModuleType.Monster;
+    }
+    // public type = ModuleType.Monster;
     public update(passtime: number): void {
         super.update(passtime);
         this.move(passtime);

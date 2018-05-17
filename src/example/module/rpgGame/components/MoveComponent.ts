@@ -69,7 +69,6 @@ class MoveComponent extends Component {
             this.entity.col = this.node.x;
             this.entity.row = this.node.y;
             this.node = null;
-            // console.log(this._gameEntity.col, this._gameEntity.row);
         }
     }
 
@@ -81,7 +80,5 @@ class MoveComponent extends Component {
         this.radian = App.MathUtils.getRadian2(this.entity.x, this.entity.y, this.endX, this.endY);
         this.distance = App.MathUtils.getDistance(this.entity.x, this.entity.y, this.endX, this.endY);
         this.entity.dir = RpgGameUtils.computeGameObjDir(this.entity.x, this.entity.y, this.endX, this.endY);
-
-        // console.log(angle, this._gameEntity.dir);
     }
 }
