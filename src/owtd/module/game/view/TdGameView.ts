@@ -22,6 +22,11 @@ class TdGameView extends BaseSpriteView implements IUpdate {
     private _id: number;
     public onAddedToStage(e: egret.Event): void {
         this.initSpriteSkills();
+        let shape = new egret.Shape();
+        shape.graphics.drawRect(300,300, -200, -400);
+        shape.graphics.endFill();
+        this.addChild(shape);
+        
     }
 
     public get Id() { return this._id; }
@@ -126,6 +131,9 @@ class TdGameView extends BaseSpriteView implements IUpdate {
             property: 'Hp',
             value: -100
         });
+        highNoon.releaseType = "rect";
+        highNoon.targetType = ModuleType.Monster;
+        highNoon.width = 100;
         highNoon.energy = 1;
         TdGameView.spriteSkills[highNoon.name] = highNoon;
     }

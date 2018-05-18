@@ -137,8 +137,11 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     public useSkill(skillName: string): void {
         //this.skills[skillName]
         this.touchEnabled = false;
-        this.addChild(CircleSkillTargetPanel.Ins);
-        CircleSkillTargetPanel.Ins.showPanel(this.onSkillReleased, this, TdGameView.spriteSkills[skillName]);
+        console.log('use skill:' + skillName);
+        this.addChild(SkillTargetPanel.Ins);
+        SkillTargetPanel.Ins.showPanel(this.onSkillReleased, this, TdGameView.spriteSkills[skillName]);
+        // this.addChild(CircleSkillTargetPanel.Ins);
+        // CircleSkillTargetPanel.Ins.showPanel(this.onSkillReleased, this, TdGameView.spriteSkills[skillName]);
     }
 
     public onSkillReleased(skill:SpriteSkill, targets: Array<TdGameMonster>){

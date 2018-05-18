@@ -2,7 +2,6 @@ class BaseSkillTargetPanel extends egret.DisplayObjectContainer{
     public type: string;
     public constructor() { super(); }
     private isOpen:boolean = false;
-    //private text: string;
     private callObj: any;
     private callFunc: any;
     private skill: SpriteSkill;

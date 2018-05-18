@@ -46,8 +46,9 @@ class CircleSkillTargetPanel extends BaseSkillTargetPanel {
         for (let id in modules){
             let monster: TdGameMonster = modules[id];
             let distance = App.MathUtils.getPointsDistance(point, monster.Point);
-            if (distance < this.radius)
+            if (distance < this.radius){
                 targets.push(monster);
+            }
         }
         return targets;
     }
