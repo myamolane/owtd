@@ -128,8 +128,10 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
     }
 
     public callBack(targets): void {
-        //App.TimerManager.doTimer(this.skill.delay, 1, this.callFunc, this.callObj, [this.skill, targets]);
-        this.callFunc.apply(this.callObj, [this.skill, targets]);
+        if (this.skill.delay > 0)
+            App.TimerManager.doTimer(this.skill.delay, 1, this.callFunc, this.callObj, [this.skill, targets]);
+        else
+            this.callFunc.apply(this.callObj, [this.skill, targets]);
     }
 
     public drawCircle(): egret.Shape {

@@ -46,7 +46,7 @@ class TimerManager extends BaseClass {
             var t:number = handler.userFrame ? this._currFrame : this._currTime;
             if (t >= handler.exeTime) {
                 App.DebugUtils.start(handler.method.toString());
-                handler.method.call(handler.methodObj, (this._currTime - handler.dealTime) * this._timeScale, handler.methodParams);
+                handler.method.call(handler.methodObj, ...handler.methodParams, (this._currTime - handler.dealTime) * this._timeScale);
                 App.DebugUtils.stop(handler.method.toString());
                 handler.dealTime = this._currTime;
                 handler.exeTime += handler.delay;

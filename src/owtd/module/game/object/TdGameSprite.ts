@@ -45,7 +45,7 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
 
 
         if (effect.effectTime > 0) {
-            App.TimerManager.doTimer(effect.effectTime, 1, (passTime: number, params: GameEffect) => {
+            App.TimerManager.doTimer(effect.effectTime, 1, ( params: GameEffect) => {
                 if (params.mc) {
                     let originMc = App.MovieClipUtil.generateMc(params.mc);
                     if (this.mc != null) {
