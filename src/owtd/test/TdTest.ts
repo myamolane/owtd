@@ -53,8 +53,8 @@ class TdTest {
         App.SoundManager.setEffectOn(true);
 
         //进入游戏
-        //App.SceneManager.runScene(SceneConsts.Home)
-        App.SceneManager.runScene(SceneConsts.TdGame, 1);
+        App.SceneManager.runScene(SceneConsts.Home)
+        //App.SceneManager.runScene(SceneConsts.TdGame, 1);
     }
 
     /**

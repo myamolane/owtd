@@ -64,6 +64,8 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
     }
 
     public setHp(value): void {
+        if (value < 0)
+            value = 0;
         this.hp = value;
         this.dispatchEvent(new egret.Event(TdEvents.SPRITE_HP_CHANGED));
         //hp changed
@@ -125,6 +127,9 @@ class TdGameSprite extends egret.Sprite implements IEffectable, IUpdate, ILoad {
 
     public set Speed(value: number) {
         this.speed = value;
+    }
+    public get Speed():number{
+        return this.speed;
     }
 
     public set Energy(value: number) {

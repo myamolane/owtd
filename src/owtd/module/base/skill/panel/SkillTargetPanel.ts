@@ -1,5 +1,5 @@
 class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.DisplayObjectContainer{
-    static SkillReleaseTypeHandlers ={
+    static SkillReleaseTypeHandlers = {
         "circle": {
             draw: function (): egret.Shape {
                 let shape = new egret.Shape();
@@ -22,12 +22,10 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
                 return shape;
             },
             move: function (shape: egret.Shape, e: egret.TouchEvent): void {
-                
+
             }
         },
-        "fullmap":{
 
-        }
 
     }
     private static ins: SkillTargetPanel;
@@ -51,20 +49,26 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
         if (this.isOpen) {
             return;
         }
+        this.isOpen = true;
         this.callObj = callObj;
         this.callFunc = callfunc;
         this.skill = skill;
         console.log(skill);
         if (SkillTargetPanel.SkillReleaseTypeHandlers.hasOwnProperty(this.skill.releaseType)) {
-            this.shape = SkillTargetPanel.SkillReleaseTypeHandlers[this.skill.releaseType]();
+            this.shape = SkillTargetPanel.SkillReleaseTypeHandlers[this.skill.releaseType].draw();
             this.addChild(this.shape);
             this.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.move, this);
+            this.addEventListener(egret.TouchEvent.TOUCH_END, this.onRelease, this);
         }
-        this.addEventListener(egret.TouchEvent.TOUCH_END, this.onRelease, this);
-        this.isOpen = true;
+        else {
+            this.onRelease(null);
+        }
+
+        console.log('show panel');
     }
 
     public onRelease(e: egret.TouchEvent) {
+        console.log('onRelease');
         let targets: Array<TdGameSprite> = [];
         if (SkillTargetPanel.SkillReleaseTypeHandlers.hasOwnProperty(this.skill.releaseType)) {
             targets = this.getRangeTarget();
@@ -72,14 +76,14 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
         else {
             switch (this.skill.releaseType) {
                 case "fullmap":
-                    if (this.skill.multiple)
-                        targets = App.ModuleManager.getModulesByType(this.skill.targetType);
-                    else
-                        targets.push(App.ModuleManager.getModulesByType(this.skill.targetType)[0])
+                    targets = App.Utils.getValues(App.ModuleManager.getModulesByType(this.skill.targetType));
+                    if (!this.skill.multiple)
+                        targets = targets.splice(1);
                     break;
             }
         }
         this.callBack(targets);
+        //App.TimerManager.doTimer
         this.closePanel();
     }
 
@@ -106,7 +110,7 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
         if (!this.isOpen) {
             return;
         }
-        this.parent.removeChild(this);
+
         if (SkillTargetPanel.SkillReleaseTypeHandlers.hasOwnProperty(this.skill.releaseType)) {
             this.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.move, this);
         }
@@ -114,12 +118,17 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
         this.callObj = null;
         this.callFunc = null;
         this.skill = null;
-        this.removeChild(this.shape);
-        delete this.shape;
-        this.shape = null;
+        if (this.shape) {
+            this.removeChild(this.shape);
+            delete this.shape;
+            this.shape = null;
+        }
+        this.isOpen = false;
+        this.parent.removeChild(this);
     }
 
     public callBack(targets): void {
+        //App.TimerManager.doTimer(this.skill.delay, 1, this.callFunc, this.callObj, [this.skill, targets]);
         this.callFunc.apply(this.callObj, [this.skill, targets]);
     }
 

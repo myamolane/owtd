@@ -243,6 +243,10 @@ class App {
     public static get MovieClipUtil(): MovieClipUtil {
         return MovieClipUtil.getInstance();
     }
+
+    public static get Utils(): Utils {
+        return Utils.getInstance();
+    }
     /**
      * 初始化函数
      * @constructor

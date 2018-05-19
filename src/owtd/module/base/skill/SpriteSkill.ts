@@ -7,6 +7,7 @@ class SpriteSkill{
     public name: string;
     public energy: number;
     public width: number;
+    public delay: number;
     public constructor(){
         this.sourceEffect = new GameEffect();
         this.targetEffect = new GameEffect();

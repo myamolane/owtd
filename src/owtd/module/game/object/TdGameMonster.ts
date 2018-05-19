@@ -26,8 +26,8 @@ class TdGameMonster extends TdGameSprite {//implements IUpdate, ILoad{
 
         var point: egret.Point = this.path[0];  //下一个节点
         var targetSpeed: egret.Point = App.MathUtils.getSpeed(point, new egret.Point(this.x, this.y), this.speed);
-        var xDistance: number = 10 * targetSpeed.x;
-        var yDistance: number = 10 * targetSpeed.y;
+        var xDistance: number =  targetSpeed.x;
+        var yDistance: number =  targetSpeed.y;
 
         if (Math.abs(point.x - this.x) <= Math.abs(xDistance) && Math.abs(point.y - this.y) <= Math.abs(yDistance)) {
 

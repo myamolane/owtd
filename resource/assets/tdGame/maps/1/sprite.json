@@ -4,7 +4,7 @@
             "name": "��һ��������Ϯ",
             "hp": "20",
             "glob": "230",
-            "speed": "0.1",
+            "speed": "1",
             "count": "10",
             "delay": "0",
             "type": "sprite1"
@@ -13,7 +13,7 @@
             "name": "�ڶ���������Ϯ",
             "hp": "20",
             "glob": "230",
-            "speed": "0.2",
+            "speed": "2",
             "count": "10",
             "delay": "30000",
             "type": "sprite1"
@@ -22,7 +22,7 @@
             "name": "������������Ϯ",
             "hp": "20",
             "glob": "230",
-            "speed": "0.3",
+            "speed": "3",
             "count": "10",
             "delay": "60000",
             "type": "sprite1"
@@ -31,7 +31,7 @@
             "name": "���Ĳ�������Ϯ",
             "hp": "20",
             "glob": "230",
-            "speed": "0.4",
+            "speed": "4",
             "count": "10",
             "delay": "90000",
             "type": "sprite1"

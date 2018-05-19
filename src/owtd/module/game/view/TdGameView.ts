@@ -127,14 +127,22 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         highNoon.name = "HighNoon";
         highNoon.multiple = true;
         highNoon.sourceEffect = new GameEffect();
-        highNoon.targetEffect.effects.push({
-            property: 'Hp',
-            value: -100
-        });
-        highNoon.releaseType = "rect";
+        highNoon.targetEffect.effects.push(
+            // {
+            // property: 'Hp',
+            // value: -100
+            // },
+            {
+                property: "Speed",
+                value: -1
+            }
+        );
+        highNoon.targetEffect.effectTime = 10000;
+        highNoon.releaseType = "fullmap";
         highNoon.targetType = ModuleType.Monster;
         highNoon.width = 100;
         highNoon.energy = 1;
+        highNoon.delay = 5000;
         TdGameView.spriteSkills[highNoon.name] = highNoon;
     }
 
