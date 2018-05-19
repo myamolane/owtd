@@ -26,8 +26,8 @@ class MenuView extends BaseEuiView{
 
         this.menu.addEventListener(egret.TouchEvent.TOUCH_TAP,this.menuClickHandler,this);
         this.menuBtn.addEventListener(egret.Event.CHANGE,this.menuBtnChangeHandler,this);
-        this.shopBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.shopClickHandler,this);
-        this.warehouseBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.warehouseClickHandler,this);
+        //this.shopBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.shopClickHandler,this);
+        //this.warehouseBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.warehouseClickHandler,this);
         //this.factoryBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.factoryClickHandler,this);
       //  this.moreBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.moreClickHandler,this);
     }

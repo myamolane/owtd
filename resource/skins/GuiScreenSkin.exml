@@ -1,38 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="GuiScreenSkin" width="650" height="1000" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-
-
-	<e:Rect fillColor="15466488" height="100" left="0" right="0" bottom="0"/>
-	<e:Image source="table_cloud_bottom" fillMode="repeat" left="0" right="0" bottom="100"/>
-	<e:Group height="170" left="0" right="0" top="0">
-		<e:Group horizontalCenter="35" verticalCenter="-41.5">
-
-
-
-
-
-
-
-			<e:Group x="369" y="7">
-				<e:Image y="0" source="icon_line" x="17"/>
-				<e:Group y="15" width="142" height="30" x="49">
-					<e:Label id="goldDisplay" size="21" horizontalCenter="0" bold="true" verticalCenter="0" textColor="3710089" text="1200"/>
-				</e:Group>
-				<e:Image y="0" x="0" source="icon_gold"/>
-			</e:Group>
-
+	<e:Group x="449" y="21">
+		<e:Group y="7" width="142" height="42" x="49">
+		<e:Label id="goldDisplay" size="35" horizontalCenter="0" bold="true" verticalCenter="0" text="1200" height="31" textColor="0xf9e213"/>
 		</e:Group>
+		<e:Image y="10" x="33" source="gold_icon" width="42" height="42"/>
 	</e:Group>
-	<e:Group height="120" left="0" right="0" bottom="0">
-		<e:layout>
-			<e:HorizontalLayout gap="20" verticalAlign="middle" horizontalAlign="center"/>
-		</e:layout>
-
-		<e:Image id="shopBtn" source="icon_shop" x="112" y="53" width="114" height="99"/>
-		<e:Image id="warehouseBtn" source="icon_warehouse" x="157" y="136"/>
 
 
-	</e:Group>
 	<ns1:Menu id="menu" x="78" y="216" skinName="MenuSkin" visible="false"/>
-	<e:ToggleButton id="menuBtn" label="切换按钮" skinName="MenuButtonSkin" x="14" y="237"/>
+	<e:ToggleButton id="menuBtn" label="切换按钮" skinName="MenuButtonSkin" x="14" bottom="20"/>
 </e:Skin>
