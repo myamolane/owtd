@@ -23,7 +23,9 @@ class MenuView extends BaseEuiView{
      */
     public initUI():void{
         super.initUI();
-
+        console.log(this.menuBtn.y);
+        this.menu.x = this.menuBtn.x + this.menuBtn.width;
+        this.menu.bottom = 0;
         this.menu.addEventListener(egret.TouchEvent.TOUCH_TAP,this.menuClickHandler,this);
         this.menuBtn.addEventListener(egret.Event.CHANGE,this.menuBtnChangeHandler,this);
         //this.shopBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.shopClickHandler,this);
