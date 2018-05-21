@@ -37,6 +37,7 @@
     "resource/skins/SaleItemSkin.exml",
     "resource/skins/TabBarButtonSkin.exml",
     "resource/skins/TabBarSkin.exml",
-    "resource/skins/TaskItemRendererSkin.exml"
+    "resource/skins/TaskItemRendererSkin.exml",
+    "resource/skins/TdGameEnterSkin.exml"
   ]
 }

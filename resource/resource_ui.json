@@ -1,11 +1,26 @@
 {
     "groups": [
         {
-            "keys": "gold_icon, pack_icon, settings_icon, shop_icon,skill_HighNoon_png, bullet1,num_fnt,map_1_sprite_json,sprite1_left_json,sprite1_left_png,sprite1_up_json,sprite1_up_png,sprite1_down_json,sprite1_down_png,sprite1_right_json,sprite1_right_png,map_1_turret_json, panelbackground,turretskin,turretskin0_json,turretskin0_png,turretskin1_json,turretskin1_png,turretskin2_json,turretskin2_png,turretskin3_json,turretskin3_png,map_1_png,logo_twink_json,logo_twink_png,btn_close,home_bg,btn_wrong,bitmapFont,table_activity,table_bg,table_box_down,table_box_down_2,table_box_middle,table_box_up,table_cloud_top,table_cloud_bottom,btn_shrink_bg,btn_shrink,menu_bg,btn_mail,btn_mission,btn_activity,table_task,table_mail,task_bg,icon_diamond,icon_experience,icon_fertilization,icon_gold,icon_friend,icon_more,icon_shop,icon_warehouse,icon_factory,icon_name,icon_head,icon_line,icon_LV,icon_badge,table_shop,table_tittle,table_warehouse,icon_factory_tittle,tabBar_selected_down,text_fertilizer01,text_fertilizer02,text_seed01,text_seed02,tabBar_down,sto_table_tittle,card_bg,icon_fertilizer02,icon_fertilizer03,icon_fertilizer04,icon_fertilizer05,icon_02,bbs,text_fruit_01,text_fruit_02,text_fruit_juice_01,text_fruit_juice_02,icon_sale",
+            "keys": "level1_png,level2_png, level2_locked_png, gold_icon, pack_icon, settings_icon, shop_icon,skill_HighNoon_png, bullet1,num_fnt,map_1_sprite_json,sprite1_left_json,sprite1_left_png,sprite1_up_json,sprite1_up_png,sprite1_down_json,sprite1_down_png,sprite1_right_json,sprite1_right_png,map_1_turret_json, panelbackground,turretskin,turretskin0_json,turretskin0_png,turretskin1_json,turretskin1_png,turretskin2_json,turretskin2_png,turretskin3_json,turretskin3_png,map_1_png,logo_twink_json,logo_twink_png,btn_close,home_bg,btn_wrong,bitmapFont,table_activity,table_bg,table_box_down,table_box_down_2,table_box_middle,table_box_up,table_cloud_top,table_cloud_bottom,btn_shrink_bg,btn_shrink,menu_bg,btn_mail,btn_mission,btn_activity,table_task,table_mail,task_bg,icon_diamond,icon_experience,icon_fertilization,icon_gold,icon_friend,icon_more,icon_shop,icon_warehouse,icon_factory,icon_name,icon_head,icon_line,icon_LV,icon_badge,table_shop,table_tittle,table_warehouse,icon_factory_tittle,tabBar_selected_down,text_fertilizer01,text_fertilizer02,text_seed01,text_seed02,tabBar_down,sto_table_tittle,card_bg,icon_fertilizer02,icon_fertilizer03,icon_fertilizer04,icon_fertilizer05,icon_02,bbs,text_fruit_01,text_fruit_02,text_fruit_juice_01,text_fruit_juice_02,icon_sale",
             "name": "preload_ui"
         }
     ],
     "resources": [
+        {
+            "name": "level1_png",
+            "type": "image",
+            "url": "assets/tdGame/level/1.png"
+        },
+        {
+            "name": "level2_png",
+            "type": "image",
+            "url": "assets/tdGame/level/2.png"
+        },
+        {
+            "name": "level2_locked_png",
+            "type": "image",
+            "url": "assets/tdGame/level/2_locked.png"
+        },
         {
             "name": "gold_icon",
             "type": "image",

@@ -53,7 +53,8 @@ class TdTest {
         App.SoundManager.setEffectOn(true);
 
         //进入游戏
-        App.SceneManager.runScene(SceneConsts.Home)
+        //App.SceneManager.runScene(SceneConsts.Home)
+        App.SceneManager.runScene(SceneConsts.Enter)
         //App.SceneManager.runScene(SceneConsts.TdGame, 1);
     }
 
@@ -78,6 +79,7 @@ class TdTest {
         App.ControllerManager.register(ControllerConst.Task, new TaskController());
         App.ControllerManager.register(ControllerConst.Mail, new MailController());
         App.ControllerManager.register(ControllerConst.RpgGame, new RpgGameController());
-        App.ControllerManager.register(ControllerConst.TdGame, new TdGameController())
+        App.ControllerManager.register(ControllerConst.TdGame, new TdGameController());
+        App.ControllerManager.register(ControllerConst.Enter, new EnterController());
     }
 }

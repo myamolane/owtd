@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin width="650" height="1000" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="levelGroup" top="0" bottom="120" left="0" right="0">
+		<e:layout>
+			<e:HorizontalLayout horizontalAlign="left" verticalAlign="top" paddingLeft="40" paddingRight="40" paddingTop="20" paddingBottom="20" gap="20"/>
+		</e:layout>
+	</e:Group>
+    <ns1:Menu id="menu"  skinName="MenuSkin"  bottom="0" horizontalCenter="0"/>
+</e:Skin>

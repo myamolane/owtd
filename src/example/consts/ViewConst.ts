@@ -18,4 +18,5 @@ class ViewConst{
     static RpgGame = "RpgGame";
     static TdGame = "TdGame"
     static Menu = "Menu"
+    static Enter = "Enter"
 }

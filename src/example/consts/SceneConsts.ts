@@ -29,4 +29,6 @@ class SceneConsts{
     static Home: string = "Home";
 
     static TdGame: string = "TdGame";
+
+    static Enter:string = "Enter";
 }
