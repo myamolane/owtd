@@ -9,17 +9,17 @@
         {
             "name": "panel_bottom_png",
             "type": "image",
-            "url": "assets/tdGame/panel/pnael_bottom.png"
+            "url": "assets/tdGame/panel/panel_bottom.png"
         },
         {
             "name": "panel_middle_png",
             "type": "image",
-            "url": "assets/tdGame/panel/pnael_middle.png"
+            "url": "assets/tdGame/panel/panel_middle.png"
         },
         {
             "name": "panel_top_png",
             "type": "image",
-            "url": "assets/tdGame/panel/pnael_top.png"
+            "url": "assets/tdGame/panel/panel_top.png"
         },
         {
             "name": "level1_png",

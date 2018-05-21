@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MenuSkin" xmlns:e="http://ns.egret.com/eui">
+<e:Skin class="MenuSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group bottom="0">
 		<e:Image source="menu_bg" scale9Grid="23,29,29,24" width="100%" height="100%"/>
 		<e:Group>
-			<e:Image id="dailyBtn" source="shop_icon" width="80" height="80"/>
-			<e:Image id="taskBtn" source="pack_icon" width="80" height="80"/>
-			<e:Image id="mailBtn" source="settings_icon" width="80" height="80" />
+			<e:Image id="shopBtn" source="shop_icon" width="80" height="80"/>
+			<e:Image id="packBtn" source="pack_icon" width="80" height="80"/>
+			<e:Image id="settingBtn" source="settings_icon" width="80" height="80" />
 			<e:Image id="bbsBtn" source="bbs" scaleX="1.6" scaleY="1.6"/>
 			<e:layout >
 				<e:HorizontalLayout  verticalAlign="middle" paddingLeft="20" paddingRight="20" paddingBottom="10" paddingTop="10"/>

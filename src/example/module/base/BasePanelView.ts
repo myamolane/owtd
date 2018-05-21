@@ -6,19 +6,20 @@ class BasePanelView extends BaseEuiView {
     public iconDisplay:eui.Image;
     public button:eui.Image;
     public contentGroup:eui.Group;
-
+    public title: eui.Label;
     private _icon:string;
     private _btn:string;
 
     public constructor(controller:BaseController, parent:eui.Group) {
         super(controller, parent);
         this.skinName = "resource/skins/PanelSkin.exml";
+        console.log(this.title.text)
     }
 
     public set icon(value:string){
         this._icon = value;
         if(this.iconDisplay){
-            this.iconDisplay.source = this._icon;
+            //this.iconDisplay.source = this._icon;
         }
     }
 
@@ -52,7 +53,7 @@ class BasePanelView extends BaseEuiView {
      */
     public initData():void{
         super.initData();
-        this.iconDisplay.source = this._icon;
+        //this.iconDisplay.source = this._icon;
         this.button.source = this._btn;
     }
 

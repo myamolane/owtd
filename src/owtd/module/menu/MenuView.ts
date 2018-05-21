@@ -11,11 +11,6 @@ class MenuView extends BaseEuiView{
     public menuBtn:eui.ToggleButton;
     public menu:Menu;
 
-    //public friendBtn:eui.Image;
-    public shopBtn:eui.Image;
-    public warehouseBtn:eui.Image;
-    //public factoryBtn:eui.Image;
-    //public moreBtn:eui.Image;
 
     /**
      *对面板进行显示初始化，用于子类继承
@@ -28,10 +23,6 @@ class MenuView extends BaseEuiView{
         this.menu.bottom = 0;
         this.menu.addEventListener(egret.TouchEvent.TOUCH_TAP,this.menuClickHandler,this);
         this.menuBtn.addEventListener(egret.Event.CHANGE,this.menuBtnChangeHandler,this);
-        //this.shopBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.shopClickHandler,this);
-        //this.warehouseBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.warehouseClickHandler,this);
-        //this.factoryBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.factoryClickHandler,this);
-      //  this.moreBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.moreClickHandler,this);
     }
 
     private playSound():void{
@@ -63,19 +54,19 @@ class MenuView extends BaseEuiView{
     }
 
     private menuClickHandler(e:egret.TouchEvent):void{
-        if(e.target == this.menu.taskBtn){
+        if(e.target == this.menu.shopBtn){
             this.playSound();
-            App.ViewManager.open(ViewConst.Task);
+            App.ViewManager.open(ViewConst.Shop);
             this.menuBtn.selected = false;
             this.menu.visible = false;
         }
-        else if(e.target == this.menu.dailyBtn){
+        else if(e.target == this.menu.packBtn){
             this.playSound();
-            App.ViewManager.open(ViewConst.Daily);
+            App.ViewManager.open(ViewConst.Warehouse);
             this.menuBtn.selected = false;
             this.menu.visible = false;
         }
-        else if(e.target == this.menu.mailBtn){
+        else if(e.target == this.menu.settingBtn){
             this.playSound();
             App.ViewManager.open(ViewConst.Mail);
             this.menuBtn.selected = false;
