@@ -47,14 +47,16 @@ class TdTest {
     private onResourceLoadComplete(): void {
         this.initModule();
         App.Init();
+        this.initActions();
 
+        App.MessageCenter.Init(LayerManager.UI_Tips);
         //音乐音效处理
-        App.SoundManager.setBgOn(false);
+        App.SoundManager.setBgOn(true);
         App.SoundManager.setEffectOn(true);
-
+        App.SoundManager.playBg("sound_bg");
         //进入游戏
-        //App.SceneManager.runScene(SceneConsts.Home)
-        App.SceneManager.runScene(SceneConsts.Enter)
+        App.SceneManager.runScene(SceneConsts.Home)
+        //App.SceneManager.runScene(SceneConsts.Enter)
         //App.SceneManager.runScene(SceneConsts.TdGame, 1);
     }
 
@@ -81,5 +83,29 @@ class TdTest {
         App.ControllerManager.register(ControllerConst.RpgGame, new RpgGameController());
         App.ControllerManager.register(ControllerConst.TdGame, new TdGameController());
         App.ControllerManager.register(ControllerConst.Enter, new EnterController());
+        App.ControllerManager.register(ControllerConst.Setting, new SettingController());
+    }
+    private initActions(): void {
+        let res = RES.getRes("action_json");
+        SpriteSkill.Skills = {};
+        res.equipments.forEach((equip) => {
+            let action = new SpriteSkill();
+            let data = RES.getRes(equip + "_json");
+            if (!data)
+                return;
+            action.parse(data);
+            SpriteSkill.Skills[equip] = action;
+        })
+        res.skills.forEach((skill) => {
+            let action = new SpriteSkill();
+            console.log(skill);
+            let data=RES.getRes(skill + "_json");
+            console.log(data);
+            if (!data)
+                return;
+            action.parse(data);
+            SpriteSkill.Skills[skill] = action;
+        })
+        console.log(SpriteSkill);
     }
 }

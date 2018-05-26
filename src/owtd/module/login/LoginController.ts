@@ -26,9 +26,16 @@ class LoginController extends BaseController{
 
         //注册C2S消息
         this.registerFunc(LoginConst.Login, this.onLogin, this);
-        this.registerFunc(LoginConst.Token, this.onGetToken, this);
+        this.registerFunc(LoginConst.GetPlayerInfo, this.onGetPlayerInfo, this);
     }
 
+    private onGetPlayerInfo(username: string){
+        return this.loginProxy.getPlayerInfo(username).then((res) => {
+            App.GlobalData.player = res;
+            App.GlobalData.level = res.level;
+            return res;
+        });
+    }
     /**
      * 请求登陆处理
      * @param userName
@@ -37,18 +44,7 @@ class LoginController extends BaseController{
     private onLogin(param:Object):void{
         this.loginProxy.login(param, this.loginSuccess).then((res)=>{
             this.loginSuccess(res);
-        });
-    }
-
-    private onGetToken(param:Object):void{
-        this.loginProxy.token(param).then(res => {
-            this.getTokenSuccess(res)
-        });
-    }
-
-    private getTokenSuccess(res:any):void{
-        App.GlobalData.token = res.token
-        this.loginView.getTokenSuccess(res)
+        })
     }
 
     /**
@@ -56,13 +52,13 @@ class LoginController extends BaseController{
      */
     private loginSuccess(res:any):void{
         //保存数据
-        App.GlobalData.token = res.data.token
-        localStorage.setItem('token', App.GlobalData.token)
+        App.GlobalData.token = res.token;
+        localStorage.setItem('token', res.token);
+        App.GlobalData.username = res.username;
         //本模块UI处理
         this.loginView.loginSuccess(res);
         //UI跳转
         //App.ViewManager.close(ViewConst.Login);
-
         //var model:BaseModel = this.getControllerModel(ControllerConst.Login);
     }
 }

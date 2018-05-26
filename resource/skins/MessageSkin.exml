@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin width="217" height="49" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group left="0" right="0" top="0" bottom="0" anchorOffsetX="0">
+		<e:Rect left="0" right="0" top="0" bottom="0" fillColor="0xffffff" strokeAlpha="0.8" strokeWeight="0" ellipseWidth="10" anchorOffsetX="0"/>
+		<e:Label id="msgDisplay" text="label" textColor="0x000000" anchorOffsetX="0" anchorOffsetY="0" height="53" size="16" verticalAlign="middle" left="50" verticalCenter="0" right="0"/>
+		<e:Image id="msgIconDisplay" width="32" height="32" source="icon_success" left="10" verticalCenter="0"/>
+	</e:Group>
+
+</e:Skin>

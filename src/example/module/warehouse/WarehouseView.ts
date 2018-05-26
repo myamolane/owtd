@@ -2,11 +2,18 @@
  * Created by egret on 15-1-7.
  */
 class WarehouseView extends BasePanelView {
+    private _collection: eui.ArrayCollection;
+    private _equipList: eui.List;
     public constructor(controller:BaseController, parent:eui.Group) {
         super(controller, parent);
-
+        this.title.text = "背包";
         this.icon = "table_warehouse";
-        this.btn = "icon_sale";
+        //this.btn = "icon_sale";
+        this.contentGroup.left = 40;
+        this.contentGroup.right = this.contentGroup.left;
+        this.initList();
+        //this.contentGroup.addChild(this._equipList);
+        EventManager.addEventListener(TdEvents.PURCHASE_EQUIP_SUCCESS, this.onRecordChanged, this);
     }
 
     /**
@@ -15,56 +22,59 @@ class WarehouseView extends BasePanelView {
      */
     public initData():void {
         super.initData();
-
-        var dp1:eui.ArrayCollection = new eui.ArrayCollection();
-        dp1.addItem({title: "普通充能", price: "150", time: "+30%", icon: "icon_fertilizer02"});
-        // dp1.addItem({title:"飞速化肥",price:"15",time:"-30分钟",icon:"icon_fertilizer04"});
-        // dp1.addItem({title:"神速化肥",price:"25",time:"-60分钟",icon:"icon_fertilizer05"});
-        // dp1.addItem({title:"普通化肥",price:"3",time:"-5分钟",icon:"icon_fertilizer02"});
-        // dp1.addItem({title:"高速化肥",price:"5",time:"-10分钟",icon:"icon_fertilizer03"});
-        // dp1.addItem({title:"飞速化肥",price:"15",time:"-30分钟",icon:"icon_fertilizer04"});
-        // dp1.addItem({title:"神速化肥",price:"25",time:"-60分钟",icon:"icon_fertilizer05"});
-        // dp1.addItem({title:"普通化肥",price:"3",time:"-5分钟",icon:"icon_fertilizer02"});
-        // dp1.addItem({title:"高速化肥",price:"5",time:"-10分钟",icon:"icon_fertilizer03"});
-        // dp1.addItem({title:"飞速化肥",price:"15",time:"-30分钟",icon:"icon_fertilizer04"});
-        // dp1.addItem({title:"神速化肥",price:"25",time:"-60分钟",icon:"icon_fertilizer05"});
-
-
-        var dp2:eui.ArrayCollection = new eui.ArrayCollection();
-        dp2.addItem({title:"神速化肥",price:"25",time:"-60分钟",icon:"icon_fertilizer05"});
-        dp2.addItem({title:"普通化肥",price:"3",time:"-5分钟",icon:"icon_fertilizer02"});
-        dp2.addItem({title:"高速化肥",price:"5",time:"-10分钟",icon:"icon_fertilizer03"});
-        dp2.addItem({title:"飞速化肥",price:"15",time:"-30分钟",icon:"icon_fertilizer04"});
-        dp2.addItem({title:"神速化肥",price:"25",time:"-60分钟",icon:"icon_fertilizer05"});
-        dp2.addItem({title:"普通化肥",price:"3",time:"-5分钟",icon:"icon_fertilizer02"});
-        dp2.addItem({title:"高速化肥",price:"5",time:"-10分钟",icon:"icon_fertilizer03"});
-        dp2.addItem({title:"飞速化肥",price:"15",time:"-30分钟",icon:"icon_fertilizer04"});
-        dp2.addItem({title:"神速化肥",price:"25",time:"-60分钟",icon:"icon_fertilizer05"});
-        dp2.addItem({title:"普通化肥",price:"3",time:"-5分钟",icon:"icon_fertilizer02"});
-        dp2.addItem({title:"高速化肥",price:"5",time:"-10分钟",icon:"icon_fertilizer03"});
-        dp2.addItem({title:"飞速化肥",price:"15",time:"-30分钟",icon:"icon_fertilizer04"});
-
-        var tabbar:TabBarContainer = new TabBarContainer();
-        tabbar.addViewStackElement("text_seed01", "text_seed02", this.createList(dp1));
-        tabbar.addViewStackElement("text_fruit_01", "text_fruit_02", this.createList(dp2));
-        tabbar.addViewStackElement("text_fruit_juice_01", "text_fruit_juice_02", this.createList(dp1));
-        tabbar.horizontalCenter = 0;
-        this.contentGroup.addChild(tabbar);
+        if (App.GlobalData.player)
+            this.applyFunc(WarehouseConst.GetEquips, App.GlobalData.player.id);
     }
 
-    private createList(dp:eui.ArrayCollection):eui.Scroller{
+    public open(...param: any[]){
+        super.open(param);
+        this.contentGroup.addChild(this._equipList);
+    }
+    public onGetEquipsSuccess(data: Array<any>): void{
+        //let arr: eui.ArrayCollection = new eui.ArrayCollection();
+        data.forEach((item) => { if (item.number) this._collection.addItem({ ...item.equipment, number: item.number})});
+    }
+
+    public onUseEquipSuccess(data):void{
+        console.log(this);
+
+        for (let i = 0; i < this._collection.length; i++){
+            let item = this._collection.getItemAt(i);
+            if (item.id === data.equipment.id){
+                this._collection.replaceItemAt({...data.equipment, number:  data.number}, i);
+                break;
+            }
+        }
+        App.ViewManager.closeView(this);
+        EventManager.dispatchEvent(TdEvents.USE_EQUIP_SUCCESS, "equip_" + data.equipment.name);
+    }
+    
+    private onRecordChanged(e: BaseEvent){
+        let data = e.object;
+        for (let i = 0; i < this._collection.length; i++){
+            let item = this._collection.getItemAt(i);
+            if (item.id === data.equipment.id){
+                this._collection.replaceItemAt({...data.equipment, number:  data.number}, i);
+                break;
+            }
+        }
+    }
+
+    private initList():eui.Scroller{
+        this._collection = new eui.ArrayCollection();
         var layout:eui.TileLayout = new eui.TileLayout();
         layout.requestedColumnCount = 2;
+        layout.horizontalGap = 40;
 
-        var taskList:eui.List = new eui.List();
-        taskList.layout = layout;
-        taskList.itemRenderer = SaleItemRenderer;
-        taskList.itemRendererSkinName = "resource/skins/SaleItemSkin.exml";
-        taskList.dataProvider = dp;
+        this._equipList = new eui.List();
+        this._equipList.layout = layout;
+        this._equipList.itemRenderer = SaleItemRenderer;
+        this._equipList.itemRendererSkinName = "resource/skins/SaleItemSkin.exml";
+        this._equipList.dataProvider = this._collection;
 
         var scroller:eui.Scroller = new eui.Scroller();
         scroller.percentWidth = scroller.percentHeight = 100;
-        scroller.viewport = taskList;
+        scroller.viewport = this._equipList;
 
         return scroller;
     }

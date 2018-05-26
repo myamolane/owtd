@@ -15,7 +15,7 @@ class LoginProxy extends BaseProxy{
         return this.post(InterfaceList.Login(), param);
     }
 
-    public token(param:any):Promise<any>{
-        return this.post(InterfaceList.Token(), param);
+    public getPlayerInfo(userName: string):Promise<any>{
+        return this.get(InterfaceList.getPlayerInfo(userName));
     }
 }

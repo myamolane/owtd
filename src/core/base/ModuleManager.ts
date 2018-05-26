@@ -37,7 +37,7 @@ class ModuleManager extends BaseClass{
                 this._types[type] = true;
         }
 
-        public getModulesByType(type: string):Array<any>{
+        public getModulesByType(type: string):Object{
             return this._modules[type];
         }
 

@@ -45,9 +45,16 @@ class BaseProxy {
             return res;
         })
     }
+    public async request(path: string, paramObj:any = null, method:string = "get") {
+        return App.Http.request(path, paramObj, method);
+    }
 
     public async postWithUrlParam(path:string, paramObj: any = null):Promise<any> {
         return this.post(path  + this.getURLVariables(paramObj).toString(), null)
+    }
+
+    public async get(path: string): Promise<any> {
+        return App.Http.request(path, null, 'get');
     }
     /**
      * 将参数转换为URLVariables

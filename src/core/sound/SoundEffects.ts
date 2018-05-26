@@ -16,10 +16,10 @@ class SoundEffects extends BaseSound {
      * 播放一个音效
      * @param effectName
      */
-    public play(effectName:string):void {
+    public play(effectName:string):egret.SoundChannel {
         var sound:egret.Sound = this.getSound(effectName);
         if (sound) {
-            this.playSound(sound);
+            return this.playSound(sound);
         }
     }
 
@@ -27,9 +27,10 @@ class SoundEffects extends BaseSound {
      * 播放
      * @param sound
      */
-    private playSound(sound:egret.Sound):void {
+    private playSound(sound:egret.Sound):egret.SoundChannel {
         var channel:egret.SoundChannel = sound.play(0, 1);
         channel.volume = this._volume;
+        return channel;
     }
 
     /**

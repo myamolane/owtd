@@ -8,4 +8,8 @@ class TdEvents{
     public static HOUSE_DEAD = TdEvents.EVENT_BASE + "HOUSE_DEAD";
     public static MONSTER_DEAD = TdEvents.EVENT_BASE + "MONSTER_DEAD";
     public static ENERGY_CHANGED = TdEvents.EVENT_BASE + "ENERGY_CHANGED";
+    public static USE_EQUIP_SUCCESS = TdEvents.EVENT_BASE + "USE_EQUIP_SUCCESS";
+    public static PURCHASE_EQUIP_SUCCESS = TdEvents.EVENT_BASE + "PURCHASE_EQUIP_SUCCESS";
+    public static GAME_GOLD_CHANGED = TdEvents.EVENT_BASE + "GAME_GOLD_CHANGED";
+    public static GAME_WIN = TdEvents.EVENT_BASE + "GAME_WIN";
 }

@@ -62,7 +62,12 @@
 	<script egret="lib" src="bin-debug/core/scene/base/BaseEuiLayer.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/FullPanel.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/skill/panel/BaseSkillTargetPanel.js"></script>
-	<script egret="lib" src="bin-debug/example/module/home/HomeView.js"></script>
+	<script egret="lib" src="bin-debug/example/module/loading/LoadingController.js"></script>
+	<script egret="lib" src="bin-debug/core/adapter/MergeJsonAnalyzer.js"></script>
+	<script egret="lib" src="bin-debug/core/adapter/ThemeAdapter.js"></script>
+	<script egret="lib" src="bin-debug/LoadingUI.js"></script>
+	<script egret="lib" src="bin-debug/core/mvc/view/IBaseView.js"></script>
+	<script egret="lib" src="bin-debug/core/net/CodeMessage.js"></script>
 	<script egret="lib" src="bin-debug/core/net/InterfaceList.js"></script>
 	<script egret="lib" src="bin-debug/core/net/http/Http.js"></script>
 	<script egret="lib" src="bin-debug/core/base/ILoad.js"></script>
@@ -133,14 +138,14 @@
 	<script egret="lib" src="bin-debug/core/event/EventManager.js"></script>
 	<script egret="lib" src="bin-debug/core/module/loading/EasyLoading.js"></script>
 	<script egret="lib" src="bin-debug/example/module/game/object/Boss.js"></script>
-	<script egret="lib" src="bin-debug/core/mvc/ControllerManager.js"></script>
+	<script egret="lib" src="bin-debug/core/module/message/MessageCenter.js"></script>
 	<script egret="lib" src="bin-debug/example/module/game/object/Hero.js"></script>
 	<script egret="lib" src="bin-debug/example/module/home/HomeConst.js"></script>
 	<script egret="lib" src="bin-debug/example/module/home/HomeController.js"></script>
 	<script egret="lib" src="bin-debug/example/module/home/HomeProxy.js"></script>
-	<script egret="lib" src="bin-debug/Main.js"></script>
+	<script egret="lib" src="bin-debug/example/module/home/HomeView.js"></script>
 	<script egret="lib" src="bin-debug/example/module/loading/LoadingConst.js"></script>
-	<script egret="lib" src="bin-debug/example/module/loading/LoadingController.js"></script>
+	<script egret="lib" src="bin-debug/Main.js"></script>
 	<script egret="lib" src="bin-debug/example/module/loading/LoadingView.js"></script>
 	<script egret="lib" src="bin-debug/example/module/mail/MailController.js"></script>
 	<script egret="lib" src="bin-debug/example/module/mail/MailView.js"></script>
@@ -158,7 +163,7 @@
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/AvatarSkillComponent.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/BattleComponent.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/CameraComponent.js"></script>
-	<script egret="lib" src="bin-debug/core/mvc/ViewManager.js"></script>
+	<script egret="lib" src="bin-debug/core/module/message/MessageRender.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/ComponentSystem.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/ComponentType.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/ControlComponent.js"></script>
@@ -166,20 +171,24 @@
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/MoveComponent.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/components/SortComponent.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/movieClip/RpgMovieClip.js"></script>
-	<script egret="lib" src="bin-debug/core/App.js"></script>
+	<script egret="lib" src="bin-debug/core/module/message/MessageType.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/object/RpgMonster.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/object/RpgPlayer.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/view/RpgBackground.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/view/RpgGameView.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/view/RpgTile.js"></script>
 	<script egret="lib" src="bin-debug/example/module/rpgGame/view/RpgTiles.js"></script>
+	<script egret="lib" src="bin-debug/example/module/shop/ShopConst.js"></script>
 	<script egret="lib" src="bin-debug/example/module/shop/ShopController.js"></script>
+	<script egret="lib" src="bin-debug/example/module/shop/ShopProxy.js"></script>
 	<script egret="lib" src="bin-debug/example/module/shop/ShopView.js"></script>
-	<script egret="lib" src="bin-debug/core/adapter/AssetAdapter.js"></script>
+	<script egret="lib" src="bin-debug/core/module/message/MessageView.js"></script>
 	<script egret="lib" src="bin-debug/example/module/task/DailyView.js"></script>
 	<script egret="lib" src="bin-debug/example/module/task/TaskController.js"></script>
 	<script egret="lib" src="bin-debug/example/module/task/TaskView.js"></script>
+	<script egret="lib" src="bin-debug/example/module/warehouse/WarehouseConst.js"></script>
 	<script egret="lib" src="bin-debug/example/module/warehouse/WarehouseController.js"></script>
+	<script egret="lib" src="bin-debug/example/module/warehouse/WareHouseProxy.js"></script>
 	<script egret="lib" src="bin-debug/example/module/warehouse/WarehouseView.js"></script>
 	<script egret="lib" src="bin-debug/example/scene/GameScene.js"></script>
 	<script egret="lib" src="bin-debug/example/scene/LayerManager.js"></script>
@@ -190,10 +199,10 @@
 	<script egret="lib" src="bin-debug/example/test/EUITest.js"></script>
 	<script egret="lib" src="bin-debug/example/test/RpgTest.js"></script>
 	<script egret="lib" src="bin-debug/owtd/TdGame.js"></script>
-	<script egret="lib" src="bin-debug/core/adapter/MergeJsonAnalyzer.js"></script>
+	<script egret="lib" src="bin-debug/core/mvc/ControllerManager.js"></script>
 	<script egret="lib" src="bin-debug/owtd/consts/PropertyType.js"></script>
 	<script egret="lib" src="bin-debug/owtd/consts/TdEvents.js"></script>
-	<script egret="lib" src="bin-debug/core/adapter/ThemeAdapter.js"></script>
+	<script egret="lib" src="bin-debug/core/mvc/ViewManager.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/House.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/HpImg.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/skill/GameEffect.js"></script>
@@ -201,9 +210,10 @@
 	<script egret="lib" src="bin-debug/owtd/module/base/skill/PropertyEffect.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/skill/SpriteSkill.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/skill/consts/SkillReleaseType.js"></script>
-	<script egret="lib" src="bin-debug/LoadingUI.js"></script>
+	<script egret="lib" src="bin-debug/core/App.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/skill/panel/CircleSkillTargetPanel.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/base/skill/panel/SkillTargetPanel.js"></script>
+	<script egret="lib" src="bin-debug/owtd/module/enter/EnterConst.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/enter/EnterController.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/enter/EnterProxy.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/enter/EnterView.js"></script>
@@ -213,7 +223,7 @@
 	<script egret="lib" src="bin-debug/owtd/module/game/TdGameModel.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/game/object/TdGameBullet.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/game/object/TdGameMonster.js"></script>
-	<script egret="lib" src="bin-debug/core/mvc/view/IBaseView.js"></script>
+	<script egret="lib" src="bin-debug/core/adapter/AssetAdapter.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/game/object/TdGameTurret.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/game/panel/TdSelectPanel.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/game/panel/TdSkillSelectPanel.js"></script>
@@ -231,6 +241,10 @@
 	<script egret="lib" src="bin-debug/owtd/module/menu/MenuController.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/menu/MenuProxy.js"></script>
 	<script egret="lib" src="bin-debug/owtd/module/menu/MenuView.js"></script>
+	<script egret="lib" src="bin-debug/owtd/module/over/GameOverController.js"></script>
+	<script egret="lib" src="bin-debug/owtd/module/over/GameOverView.js"></script>
+	<script egret="lib" src="bin-debug/owtd/module/setting/SettingController.js"></script>
+	<script egret="lib" src="bin-debug/owtd/module/setting/SettingView.js"></script>
 	<script egret="lib" src="bin-debug/owtd/scene/GameScene.js"></script>
 	<script egret="lib" src="bin-debug/owtd/scene/HomeScene.js"></script>
 	<script egret="lib" src="bin-debug/owtd/scene/LayerManager.js"></script>

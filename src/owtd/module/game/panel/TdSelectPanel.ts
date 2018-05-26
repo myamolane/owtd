@@ -14,6 +14,7 @@ class TDSelectPanel extends FullPanel {
 
     private callObject: any;
     private callFun: any;
+    private prices: Object;
 
     public showPanel(callFun, callObject) {
 
@@ -29,29 +30,28 @@ class TDSelectPanel extends FullPanel {
 
         var mcData: any;
         var mcTexture: any;
-
+        this.prices = {};
         for (var key in data) {
 
             mcData = RES.getRes(key + "_json");
             mcTexture = RES.getRes(key + "_png");
             var mcFactory = new egret.MovieClipDataFactory(mcData, mcTexture);
             var mc: egret.MovieClip = new egret.MovieClip(mcFactory.generateMovieClipData(key));
-
             this.addChild(mc);
             mc.x = Math.abs(this.numChildren - 1) * mc.width + 10;
             mc.gotoAndPlay(1, -1);
             mc.name = key;
             mc.touchEnabled = true;
+            this.prices[key] = data[key].price;
         }
 
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
     }
 
     private onTouchTab(e: egret.TouchEvent): void {
-
+        
         if (e.target instanceof egret.MovieClip) {
-            
-            this.callFun.apply(this.callObject, [e.target.name]);
+            this.callFun.apply(this.callObject, [e.target.name, this.prices[e.target.name]]);
         }
         this.closePanel();
     }
@@ -61,6 +61,7 @@ class TDSelectPanel extends FullPanel {
             return;
         }
         this.close();
+        this.prices = {};
         ///////////////////////////////////////////////////
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
 

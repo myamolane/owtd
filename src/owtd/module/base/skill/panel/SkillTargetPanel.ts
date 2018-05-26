@@ -53,7 +53,6 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
         this.callObj = callObj;
         this.callFunc = callfunc;
         this.skill = skill;
-        console.log(skill);
         if (SkillTargetPanel.SkillReleaseTypeHandlers.hasOwnProperty(this.skill.releaseType)) {
             this.shape = SkillTargetPanel.SkillReleaseTypeHandlers[this.skill.releaseType].draw();
             this.addChild(this.shape);
@@ -63,12 +62,9 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
         else {
             this.onRelease(null);
         }
-
-        console.log('show panel');
     }
 
     public onRelease(e: egret.TouchEvent) {
-        console.log('onRelease');
         let targets: Array<TdGameSprite> = [];
         if (SkillTargetPanel.SkillReleaseTypeHandlers.hasOwnProperty(this.skill.releaseType)) {
             targets = this.getRangeTarget();
@@ -82,6 +78,7 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
                     break;
             }
         }
+        App.SoundManager.playEffect(this.skill.sound);
         this.callBack(targets);
         //App.TimerManager.doTimer
         this.closePanel();
@@ -132,8 +129,8 @@ class SkillTargetPanel extends egret.DisplayObjectContainer {// extends egret.Di
             App.TimerManager.doTimer(this.skill.delay, 1, this.callFunc, this.callObj, [this.skill, targets]);
         else
             this.callFunc.apply(this.callObj, [this.skill, targets]);
-    }
 
+    }
     public drawCircle(): egret.Shape {
         let shape = new egret.Shape();
         shape.graphics.beginFill(0, 0.5);

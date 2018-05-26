@@ -1,7 +1,6 @@
 class TdGameModel extends BaseModel {
-    public mapId: number;
-    public monsterNum: number;
-
+    public mapId: any;
+    public gold: number = 100;
     public constructor($controller: BaseController) {
         super($controller)
     }

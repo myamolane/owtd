@@ -1,13 +1,14 @@
 class EnterView extends BaseEuiView {
     public constructor($controller: BaseController, $parent: eui.Group) {
         super($controller, $parent);
-
         this.skinName = "resource/skins/TdGameEnterSkin.exml";
     }
 
     public menu: Menu;
     public levelGroup: eui.Group;
-
+    public backBtn: eui.Image;
+    public goldIcon: eui.Image;
+    public goldDisplay: eui.Label;
     /**
      *对面板进行显示初始化，用于子类继承
      *
@@ -15,9 +16,24 @@ class EnterView extends BaseEuiView {
     public initUI(): void {
         super.initUI();
 
-        let level1 = App.DisplayUtils.createEuiImage("level1_png");
-        let curLevel = 1;
-        for (let i = 0; i <= App.GlobalData.levels; i++) {
+        // let level1 = App.DisplayUtils.createEuiImage("level1_png");
+        // let curLevel = 1;
+        // for (let i = 0; i <= App.GlobalData.levels; i++) {
+        //     let resName = "level" + i;
+        //     resName += i <= curLevel ? "_png" : "_locked_png";
+        //     let levelImage = App.DisplayUtils.createEuiImage(resName);
+        //     levelImage.name = i.toString();
+        //     this.levelGroup.addChild(levelImage);
+        //     levelImage.scaleX = 2;
+        //     levelImage.scaleY = 2;
+        //     levelImage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLevelClicked, this);
+        // }
+        // this.backBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBack, this);
+    }
+    public open(...param: any[]) {
+        super.open(param);
+        let curLevel = parseInt(App.GlobalData.level);
+        for (let i = 1; i <= App.GlobalData.levels; i++) {
             let resName = "level" + i;
             resName += i <= curLevel ? "_png" : "_locked_png";
             let levelImage = App.DisplayUtils.createEuiImage(resName);
@@ -27,8 +43,38 @@ class EnterView extends BaseEuiView {
             levelImage.scaleY = 2;
             levelImage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLevelClicked, this);
         }
+        this.backBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBack, this);
+    }
+    public close(...param: any[]) {
+        super.close(param);
+        while (this.levelGroup.numChildren > 0) {
 
-        this.menu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.menuClickHandler, this);
+            let obj: any = this.levelGroup.removeChildAt(0);
+            if (obj instanceof eui.Image) {
+                obj.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onLevelClicked, this);
+            }
+        }
+        this.backBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onBack, this);
+    }
+    public initData() {
+        super.initData();
+        if (App.GlobalData.player) {
+            this.goldDisplay.text = App.GlobalData.player.gold;
+            this.goldDisplay.visible = true;
+            this.goldIcon.visible = true;
+        }
+        EventManager.addEventListener(TdEvents.GAME_WIN, this.onGameWin, this);
+    }
+    private onGameWin(e: BaseEvent) {
+        let model = <TdGameModel>App.ControllerManager.getControllerModel(ControllerConst.TdGame);
+
+        if (App.GlobalData.player) {
+            this.goldDisplay.text = App.GlobalData.player.gold;
+        }
+
+    }
+    private onBack(e: egret.TouchEvent): void {
+        App.SceneManager.backScene();
 
     }
 
@@ -38,37 +84,5 @@ class EnterView extends BaseEuiView {
 
     private playSound(): void {
         App.SoundManager.playEffect("sound_dianji");
-    }
-
-    private shopClickHandler(e: egret.TouchEvent): void {
-        this.playSound();
-        App.ViewManager.open(ViewConst.Shop);
-    }
-
-    private warehouseClickHandler(e: egret.TouchEvent): void {
-        this.playSound();
-        App.ViewManager.open(ViewConst.Warehouse);
-    }
-
-    private moreClickHandler(e: egret.TouchEvent): void {
-        this.playSound();
-    }
-
-
-    private menuClickHandler(e: egret.TouchEvent): void {
-        if (e.target == this.menu.shopBtn) {
-            this.playSound();
-            App.ViewManager.open(ViewConst.Shop);
-            //this.menu.visible = false;
-        }
-        else if (e.target == this.menu.packBtn) {
-            this.playSound();
-            App.ViewManager.open(ViewConst.Warehouse);
-        }
-        else if (e.target == this.menu.settingBtn) {
-            this.playSound();
-            App.ViewManager.open(ViewConst.Task);
-            //this.menu.visible = false;
-        }
     }
 }

@@ -22,7 +22,7 @@ class House extends egret.Sprite implements ILoad{
             this.setHp(value);
             this.hpText.text = value.toString();
             if (this._hp <= 0) {
-                EventManager.dispatchEvent("", this);
+                EventManager.dispatchEvent(TdEvents.HOUSE_DEAD, this);
             }
         }
         private get hp(): number {

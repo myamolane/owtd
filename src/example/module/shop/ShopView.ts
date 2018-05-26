@@ -4,8 +4,10 @@
 class ShopView extends BasePanelView {
     public constructor(controller:BaseController, parent:eui.Group) {
         super(controller, parent);
-
+        this.title.text = "道具商店";
         this.icon = "table_shop";
+        this.contentGroup.left = 40;
+        this.contentGroup.right = 40;
     }
 
     /**
@@ -14,53 +16,29 @@ class ShopView extends BasePanelView {
      */
     public initData():void {
         super.initData();
+        this.applyFunc(ShopConst.GetShopList);
+    }
 
-        var dp1:eui.ArrayCollection = new eui.ArrayCollection();
-        dp1.addItem({title: "普通充能", price: "150", time: "+30%", icon: "icon_fertilizer02"});
-        dp1.addItem({title: "高级充能", price: "250", time: "+50%", icon: "icon_fertilizer03"});
-        // dp1.addItem({title: "飞速化肥", price: "15", time: "-30分钟", icon: "icon_fertilizer04"});
-        // dp1.addItem({title: "神速化肥", price: "25", time: "-60分钟", icon: "icon_fertilizer05"});
-        // dp1.addItem({title: "普通化肥", price: "3", time: "-5分钟", icon: "icon_fertilizer02"});
-        // dp1.addItem({title: "高速化肥", price: "5", time: "-10分钟", icon: "icon_fertilizer03"});
-        // dp1.addItem({title: "飞速化肥", price: "15", time: "-30分钟", icon: "icon_fertilizer04"});
-        // dp1.addItem({title: "神速化肥", price: "25", time: "-60分钟", icon: "icon_fertilizer05"});
-        // dp1.addItem({title: "普通化肥", price: "3", time: "-5分钟", icon: "icon_fertilizer02"});
-        // dp1.addItem({title: "高速化肥", price: "5", time: "-10分钟", icon: "icon_fertilizer03"});
-        // dp1.addItem({title: "飞速化肥", price: "15", time: "-30分钟", icon: "icon_fertilizer04"});
-        // dp1.addItem({title: "神速化肥", price: "25", time: "-60分钟", icon: "icon_fertilizer05"});
+    public onGetShopListSuccess(data: Array<any>){
+        let arr: eui.ArrayCollection = new eui.ArrayCollection();
+        data.forEach((item) => arr.addItem(item));
+        this.contentGroup.addChild(this.createList(arr));
+    }
 
-
-        var dp2:eui.ArrayCollection = new eui.ArrayCollection();
-        //dp2.addItem({title: "神速化肥", price: "25", time: "-60分钟", icon: "icon_fertilizer05"});
-        //dp1.addItem({title: "普通充能", price: "150", time: "+30%", icon: "icon_fertilizer02"});
-        // dp2.addItem({title: "高速化肥", price: "5", time: "-10分钟", icon: "icon_fertilizer03"});
-        // dp2.addItem({title: "飞速化肥", price: "15", time: "-30分钟", icon: "icon_fertilizer04"});
-        // dp2.addItem({title: "神速化肥", price: "25", time: "-60分钟", icon: "icon_fertilizer05"});
-        // dp2.addItem({title: "普通化肥", price: "3", time: "-5分钟", icon: "icon_fertilizer02"});
-        // dp2.addItem({title: "高速化肥", price: "5", time: "-10分钟", icon: "icon_fertilizer03"});
-        // dp2.addItem({title: "飞速化肥", price: "15", time: "-30分钟", icon: "icon_fertilizer04"});
-        // dp2.addItem({title: "神速化肥", price: "25", time: "-60分钟", icon: "icon_fertilizer05"});
-        // dp2.addItem({title: "普通化肥", price: "3", time: "-5分钟", icon: "icon_fertilizer02"});
-        // dp2.addItem({title: "高速化肥", price: "5", time: "-10分钟", icon: "icon_fertilizer03"});
-        // dp2.addItem({title: "飞速化肥", price: "15", time: "-30分钟", icon: "icon_fertilizer04"});
-
-        var tabbar:TabBarContainer = new TabBarContainer();
-        tabbar.addViewStackElement("text_fertilizer01", "text_fertilizer02", this.createList(dp1));
-        tabbar.addViewStackElement("text_seed01", "text_seed02", this.createList(dp2));
-        tabbar.horizontalCenter = 0;
-        this.contentGroup.addChild(tabbar);
+    public onPurchaseSuccess(){
+        console.log('purchase success');
     }
 
     private createList(dp:eui.ArrayCollection):eui.Scroller{
         var layout:eui.TileLayout = new eui.TileLayout();
         layout.requestedColumnCount = 2;
-
+        layout.horizontalGap = 40;
         var taskList:eui.List = new eui.List();
         taskList.layout = layout;
         taskList.itemRenderer = SaleItemRenderer;
         taskList.itemRendererSkinName = "resource/skins/SaleItemSkin.exml";
         taskList.dataProvider = dp;
-
+        
         var scroller:eui.Scroller = new eui.Scroller();
         scroller.percentWidth = scroller.percentHeight = 100;
         scroller.viewport = taskList;

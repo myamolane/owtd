@@ -17,12 +17,12 @@ class HomeScene extends BaseScene{
 
         //添加该Scene使用的层级
         this.addLayer(LayerManager.UI_Main);
-
+        this.addLayer(LayerManager.UI_Tips);
         //开启UI部分
         App.ViewManager.open(ViewConst.Home);
 
         //播放背景音乐
-        App.SoundManager.playBg("sound_bg");
+        //App.SoundManager.playBg("sound_bg");
     }
 
     /**

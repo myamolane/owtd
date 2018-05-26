@@ -10,4 +10,5 @@
 
 	<ns1:Menu id="menu" x="78" y="216" skinName="MenuSkin" visible="false"/>
 	<e:ToggleButton id="menuBtn" label="切换按钮" skinName="MenuButtonSkin" x="14" bottom="20"/>
+	<e:Image id="backBtn" width="40" height="40" source="icon_back" left="5" top="0"/>
 </e:Skin>

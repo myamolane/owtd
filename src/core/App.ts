@@ -31,6 +31,9 @@ class App {
         return Http.getInstance();
     }
 
+    public static get MessageCenter(): MessageCenter {
+        return MessageCenter.getInstance();
+    }
     /**
      * 模块管理类
      * @type {ControllerManager}

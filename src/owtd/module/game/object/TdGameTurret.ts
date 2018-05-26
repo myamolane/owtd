@@ -6,19 +6,19 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     }
     //public static type = ModuleType.Sprite;
     // public static type = ModuleType.Turret;
-    public get type(){
+    public get type() {
         return ModuleType.Turret;
     }
     private offsetx: number;
     private offsety: number;
     private skin: string;
     private radius: number;
-    private glob: number;
+    private price: number;
     private circle: egret.Shape;
     private lastTime: number = 0;
     private shape: egret.Shape;
     private skillSelectPanel: TdSkillSelectPanel;
-    public fireRate: number = 3000;
+    public fireRate: number = 500;
     private creatSp(): void {
 
         var data = RES.getRes(this.skin + "_json");
@@ -60,7 +60,6 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
     private searchTarget(): void {
         var spriteList: Object = App.ModuleManager.getModuleList()[ModuleType.Monster];
         var tempSp: TdGameMonster;
-
         for (var key in spriteList) {
             if (spriteList[key] instanceof TdGameMonster) {
                 tempSp = spriteList[key];
@@ -100,7 +99,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
         //this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
         this.shape.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTab, this);
         App.ModuleManager.registerModule(this);
-        this.initSkillPanel();
+        //this.initSkillPanel();
     }
 
     public release(): void {
@@ -127,6 +126,8 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
         this.skills.forEach((skill) => {
             if (this.energy >= skill.energy)
                 this.enableSkill(skill);
+            else
+                this.skillSelectPanel.disableSkill(skill.name);
         });
     }
 
@@ -138,16 +139,18 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
         //this.skills[skillName]
         this.touchEnabled = false;
         this.addChild(SkillTargetPanel.Ins);
-        SkillTargetPanel.Ins.showPanel(this.onSkillReleased, this, TdGameView.spriteSkills[skillName]);
+        SkillTargetPanel.Ins.showPanel(this.onSkillReleased, this, SpriteSkill.Skills["skill_"+skillName]);
         // this.addChild(CircleSkillTargetPanel.Ins);
         // CircleSkillTargetPanel.Ins.showPanel(this.onSkillReleased, this, TdGameView.spriteSkills[skillName]);
     }
 
-    public onSkillReleased(skill:SpriteSkill, targets: Array<TdGameMonster>){
+    public onSkillReleased(skill: SpriteSkill, targets: Array<TdGameMonster>) {
+        
         targets.forEach((target) => {
             target.onEffect(skill.targetEffect);
         });
         this.onEffect(skill.sourceEffect);
+        this.Energy = this.energy - skill.energy;
     }
 
 
@@ -167,7 +170,7 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
         if (this.circle == null) {
             this.circle = new egret.Shape();
             this.circle.graphics.beginFill(0xffff60, 1);
-            this.circle.graphics.drawCircle(0, 0, this.radius);
+            this.circle.graphics.drawCircle(32, 32, this.radius);
             this.circle.graphics.endFill();
             this.circle.alpha = 0.2;
             this.addChild(this.circle);
@@ -177,11 +180,23 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
 
     }
 
-    private onChange(item: string): void {
-
+    private onChange(item: string, price): void {
+        price = parseInt(price);
+        let gold = App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.GetGold);
+        gold -= price - this.price;
+        if (gold < 0) {
+            App.MessageCenter.ShowMessage("没有足够金币", MessageType.ERROR);
+            return;
+        }
+        if (this.skillSelectPanel){
+            this.removeChild(this.skillSelectPanel);
+            delete this.skillSelectPanel;
+            this.skillSelectPanel = null;
+        }
         this.parseSkin(item);
-        this.creatSp();
 
+        this.creatSp();
+        App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.SetGold, gold)
         if (this.circle != null) {
             this.removeChild(this.circle);
             this.circle = null;
@@ -192,10 +207,10 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
         this.name = obj.name;
         this.x = parseInt(obj.x);
         this.y = parseInt(obj.y);
-        obj.skills.forEach((skill) => {
-            if (TdGameView.spriteSkills.hasOwnProperty(skill))
-                this.skills.push(TdGameView.spriteSkills[skill]);
-        });
+        // obj.skills.forEach((skill) => {
+        //     if (SpriteSkill.Skills.hasOwnProperty(skill))
+        //         this.skills.push(SpriteSkill.Skills[skill]);
+        // });
         this.parseSkin(obj.type);
     }
 
@@ -208,6 +223,14 @@ class TdGameTurret extends TdGameSprite implements IUpdate, ILoad {
         this.offsety = parseInt(data[key].offsety);
         this.radius = parseInt(data[key].radius);
         this.speed = parseInt(data[key].speed);
-        this.glob = parseInt(data[key].glob);
+        this.price = parseInt(data[key].price);
+        if (data[key].skills) {
+            console.log(data[key].skills);
+            data[key].skills.forEach((skill) => {
+                if (SpriteSkill.Skills.hasOwnProperty(skill))
+                    this.skills.push(SpriteSkill.Skills[skill]);
+            });
+        }
+        this.initSkillPanel();
     }
 }

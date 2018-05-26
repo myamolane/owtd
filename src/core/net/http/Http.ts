@@ -4,7 +4,7 @@
  */
 declare var axios
 class Http extends BaseClass {
-    public _serverUrl:string;
+    public _serverUrl: string;
     /**
      * 构造函数
      */
@@ -12,45 +12,93 @@ class Http extends BaseClass {
         super();
     }
 
-    public async doRequest(url:string,data:Object=null, method=egret.HttpMethod.GET, dataFormat=egret.URLLoaderDataFormat.TEXT):Promise<any>{
-        let req: egret.HttpRequest = new egret.HttpRequest();
-
-        if (App.GlobalData.token)
-            req.setRequestHeader("Authorization", "JWT "+App.GlobalData.token);
-        req.open(this._serverUrl+url, method)
-        req.responseType = dataFormat
-        //req.setRequestHeader("Access-Contro-Allow-Headers", "*");
-        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        req.send(JSON.stringify(data))
-        var promise = new Promise<any>((resolve,  reject) => {
-            req.addEventListener(egret.Event.COMPLETE, (event) =>(
-                resolve(JSON.parse(req.response))
-            ), this)
-            req.addEventListener(egret.IOErrorEvent.IO_ERROR, (event) =>(
-                reject(req.response)
-            ), this)            
-        })
-        return promise;
+    private async checkStatus(response) {
+        if (response.status >= 200 && response.status < 300) {
+            return response;
+        }
+        const errortext = codeMessage[response.status] || response.statusText;
+        const error = new Error(errortext);
+        error.name = response.status;
+        error.message = errortext;
+        throw error;
     }
-    public async request(url: string, data:Object=null, method:string = 'GET'):Promise<any>{
+
+    private async checkResponse(response) {
+        let body = response.data;
+        if (body.status && body.status != 'ok') {
+
+        }
         
-        return axios({
+        return body.data;
+    }
+
+    private async handleError(e: any) {
+        let status
+        let message
+        if (e.response){
+            status = parseInt(e.response?e.response.status:e.name);
+        }
+        else{
+            status = e.name;
+        }
+        message = codeMessage[status]?codeMessage[status]:e.message;
+        console.log(status);
+        console.log(message);
+        App.MessageCenter.ShowMessage(message, MessageType.ERROR)
+        if (status === 401) {
+            console.log(401);
+            App.Utils.clearToken();
+        }
+        else if (status === 403) {
+            console.log(403);
+        }
+        else if (status <= 504 && status >= 500) {
+            
+        }
+        else if (status >= 404 && status < 422) {
+            
+        }
+        
+        return Promise.reject(message);
+    }
+
+    public async request(url: string, data: Object = null, method: string = 'GET'): Promise<any> {
+        let headers = {
+            'Content-Type': 'application/json'
+        };
+        let token = App.GlobalData.token?App.GlobalData.token:localStorage.getItem('token');
+        
+        if (token){
+            headers['Authorization'] = "JWT " + token;
+        }
+        
+        console.log(headers);
+        let result = <Promise<any>>axios({
             method: method,
-            url: this._serverUrl+url,
+            url: this._serverUrl + url,
             data: data,
-            headers: {
-                'Content-Type':'application/json',
-            }
-        }).then((res) => {
-            console.log(res)
-            return res.data
-        })
+            headers: headers
+        }); 
+        return result
+            .then(this.checkStatus)
+            // .then(response => {
+            //     if (method === 'DELETE' || response.status === 204) {
+            //         return response.text();
+            //     }
+            //     return response.json();
+            // })
+            .then(this.checkResponse)
+            // .then((res) => {
+            //     console.log(res)
+            //     return res.data
+            // })
+            .catch((e) => {return this.handleError(e);});
     }
     /**
      * 初始化服务器地址
      * @param serverUrl服务器链接地址
      */
-    public initServer(serverUrl:string):void {
+    public initServer(serverUrl: string): void {
         this._serverUrl = serverUrl;
     }
 }

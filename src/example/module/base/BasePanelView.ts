@@ -9,11 +9,11 @@ class BasePanelView extends BaseEuiView {
     public title: eui.Label;
     private _icon:string;
     private _btn:string;
+    public static currentPanel: IBaseView;
 
     public constructor(controller:BaseController, parent:eui.Group) {
         super(controller, parent);
         this.skinName = "resource/skins/PanelSkin.exml";
-        console.log(this.title.text)
     }
 
     public set icon(value:string){
@@ -59,5 +59,16 @@ class BasePanelView extends BaseEuiView {
 
     private closeBtnClickHandler(e:egret.TouchEvent):void{
         App.ViewManager.closeView(this);
+        BasePanelView.currentPanel = null;
     }
+
+    public open(...params: any[]):void{
+        super.open(params);
+        if (BasePanelView.currentPanel){
+            App.ViewManager.closeView(BasePanelView.currentPanel);
+        }
+        BasePanelView.currentPanel = this;
+    }
+
+    
 }

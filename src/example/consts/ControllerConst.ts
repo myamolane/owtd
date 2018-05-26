@@ -15,5 +15,6 @@ class ControllerConst{
     static RpgGame = "RpgGame";
     static TdGame = "TdGame";
     static Register = "Register";
-    static Enter = "Enter"
+    static Enter = "Enter";
+    static Setting = "Setting";
 }

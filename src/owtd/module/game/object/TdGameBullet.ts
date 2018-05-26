@@ -9,7 +9,7 @@ class TdGameBullet extends TdGameSprite{
     private radius: number;
     private target: TdGameSprite;
     private source: TdGameSprite;
-    public atk: number = 10;
+    public atk: number = 100;
     public setTarget(source: TdGameSprite, target: TdGameSprite): void{
         this.x = source.x;
         this.y = source.y;
@@ -21,7 +21,7 @@ class TdGameBullet extends TdGameSprite{
         bitmap.y = -bitmap.height;
         this.addChild(bitmap);
 
-        this.radius = 10;
+        this.radius = 20;
         this.speed = 1;
     }
     

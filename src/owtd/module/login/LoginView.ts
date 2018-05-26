@@ -75,7 +75,8 @@ class LoginView extends BasePanelView {
         this.skipBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSkip, this);
     }
     public onSkip(): void {
-        App.SceneManager.runScene(SceneConsts.TdGame, 1);
+        //App.SceneManager.runScene(SceneConsts.TdGame, 1);
+        App.SceneManager.runScene(SceneConsts.Enter);
     }
     /**
      *对面板数据的初始化，用于子类继承
@@ -127,7 +128,6 @@ class LoginView extends BasePanelView {
             "username": this.idTextInput.text,
             "password": this.pwdTextInput.text
         }
-        alert('start login')
         this.applyFunc(LoginConst.Login, param);
     }
 
@@ -137,16 +137,10 @@ class LoginView extends BasePanelView {
     public loginSuccess(res):void{
         //TODO 登陆成功处理
         //this.getToken()
-    }
-    
-    private getToken():void{
-        var param = {
-            "username": this.idTextInput.text,
-            "password": this.pwdTextInput.text
-        }
-        this.applyFunc(LoginConst.Token, param);
-    }
-
-    public getTokenSuccess(res):void{
+        this.applyFunc(LoginConst.GetPlayerInfo, App.GlobalData.username).then(() =>{
+            App.SceneManager.runScene(SceneConsts.Enter);
+        });
+        
+        
     }
 }

@@ -1,0 +1,18 @@
+{
+    "targetEffect": {
+        "effects": [
+            {
+                "property": "Speed",
+                "value": -1
+            }
+        ]
+    },
+    "multiple": true,
+    "targetType": "OWTD_MONSTER",
+    "releaseType": "fullmap",
+    "name": "snowball",
+    "energy": 0,
+    "width": 0,
+    "delay": 0,
+    "startBy": "sound"
+}

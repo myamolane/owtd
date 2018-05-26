@@ -6,14 +6,20 @@ class TdGameView extends BaseSpriteView implements IUpdate {
     //public turrets:Array<TdGameTurret>;
     //public monsters:Array<TdGameMonster>;
     //public bullets: Array<TdGameBullet>;
-    public static spriteSkills: Object;
     private selectPanel: TDSelectPanel;
+    private skillSelectPanel: TdSkillSelectPanel;
     public constructor($controller: BaseController, $parent: egret.DisplayObjectContainer) {
         super($controller, $parent);
         this._id = App.ModuleManager.generateModuleId();
         this.spriteLayer = new egret.DisplayObjectContainer();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddedToStage, this);
+        EventManager.addEventListener(TdEvents.USE_EQUIP_SUCCESS, this.onUseEquip, this);
+        //this.initSkillPanel();
     }
+    // public initSkillPanel() {
+    //     let skillNames = App.Utils.getKeys(SpriteSkill.Skills)
+    //     this.skillSelectPanel = new TdSkillSelectPanel(skillNames);
+    // }
     public isRunning = true;
 
     private static _type = ModuleType.View;
@@ -21,12 +27,10 @@ class TdGameView extends BaseSpriteView implements IUpdate {
 
     private _id: number;
     public onAddedToStage(e: egret.Event): void {
-        this.initSpriteSkills();
         let shape = new egret.Shape();
-        shape.graphics.drawRect(300,300, -200, -400);
+        shape.graphics.drawRect(300, 300, -200, -400);
         shape.graphics.endFill();
         this.addChild(shape);
-        
     }
 
     public get Id() { return this._id; }
@@ -44,6 +48,7 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         key = 1;
         this.map = App.DisplayUtils.createBitmap('map_' + key + '_png');
         this.mapLayer.addChild(this.map);
+        this.addChild(this.mapLayer);
     }
     //建立塔防
     private createTurret(mapId): void {
@@ -101,50 +106,33 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         house.load(this.decorationLayer);
     }
 
+    private onUseEquip(e: BaseEvent) {
+        console.log(e.object);
+        this.addChild(SkillTargetPanel.Ins);
+        SkillTargetPanel.Ins.showPanel(this.onEquipReleased, this, SpriteSkill.Skills[e.object]);
+
+    }
+
+    public onEquipReleased(skill: SpriteSkill, targets: Array<TdGameSprite>) {
+        targets.forEach((target) => {
+            target.onEffect(skill.targetEffect);
+        });
+    }
+
     public initUI(): void {
         super.initUI();
         this.mapLayer = new egret.DisplayObjectContainer();
-        this.addChild(this.mapLayer);
         this.decorationLayer = new egret.DisplayObjectContainer();
-        this.addChild(this.decorationLayer);
         this.spriteLayer = new egret.DisplayObjectContainer();
-        this.addChild(this.spriteLayer);
-
         this.selectPanel = new TDSelectPanel();
         this.selectPanel.load(this);
-        //this.addChild(this.selectPanel)
     }
 
     public initData(): void {
         super.initData();
         this.startTime = egret.getTimer();
-        this.initSpriteSkills();
     }
 
-    public initSpriteSkills(): void {
-        TdGameView.spriteSkills = {};
-        let highNoon = new SpriteSkill();
-        highNoon.name = "HighNoon";
-        highNoon.multiple = true;
-        highNoon.sourceEffect = new GameEffect();
-        highNoon.targetEffect.effects.push(
-            // {
-            // property: 'Hp',
-            // value: -100
-            // },
-            {
-                property: "Speed",
-                value: -1
-            }
-        );
-        highNoon.targetEffect.effectTime = 10000;
-        highNoon.releaseType = "fullmap";
-        highNoon.targetType = ModuleType.Monster;
-        highNoon.width = 100;
-        highNoon.energy = 1;
-        highNoon.delay = 5000;
-        TdGameView.spriteSkills[highNoon.name] = highNoon;
-    }
 
     public open(...param: any[]): void {
         super.open(param);
@@ -152,12 +140,15 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         this.createMap(gameModel.mapId);
         this.createTurret(gameModel.mapId);
         this.creatAction(gameModel.mapId);
+
         this.createHouse();
         EventManager.addEventListener(TdEvents.ACTIVATION_OF_BULLET, this.onActivationBullet, this);
         EventManager.addEventListener(TdEvents.HOUSE_DEAD, this.onHouseDead, this);
         EventManager.addEventListener(TdEvents.MONSTER_DEAD, this.onMonsterDead, this);
         //this.creatSp();
         App.ModuleManager.registerModule(this);
+        this.addChild(this.spriteLayer);
+        this.addChild(this.decorationLayer);
     }
 
     public close(...params: any[]): void {
@@ -181,17 +172,28 @@ class TdGameView extends BaseSpriteView implements IUpdate {
 
     private onMonsterDead(e: BaseEvent): void {
 
+        e.object.visible = false;
+        let gold = this.applyFunc(TdGameConst.GetGold) + e.object.award;
+        this.applyFunc(TdGameConst.SetGold, gold);
+
+        if (TdGameMonster.Total == 1 && this.action.length == 0) {
+            setTimeout(function () {
+                alert("You win!");
+                App.ControllerManager.applyFunc(ControllerConst.TdGame, TdGameConst.GameWin);
+                App.SceneManager.backScene();
+                EventManager.dispatchEvent(TdEvents.GAME_WIN, null);
+            }, 2000);
+            // alert("You win!");
+            // this.applyFunc(TdGameConst.GameWin);
+            // App.SceneManager.backScene();
+            // EventManager.dispatchEvent(TdEvents.GAME_WIN, null);
+        }
     }
 
     public onHouseDead(e: BaseEvent): void {
         App.ModuleManager.stop();
-
-        var panel = new eui.Panel();
-        panel.title = "游戏结束";
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        panel.addEventListener(eui.UIEvent.CLOSING, function (e: eui.UIEvent) { location.reload() }, this);
-        this.addChild(panel);
+        alert('Game over');
+        App.SceneManager.backScene();
     }
 
     public showPanel(callfun, callobj): void {
@@ -207,5 +209,5 @@ class TdGameView extends BaseSpriteView implements IUpdate {
         bullet.setTarget(e.object[0], e.object[1]);
         bullet.load(this.decorationLayer);
     }
-    
+
 }

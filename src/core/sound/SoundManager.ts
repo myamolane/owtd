@@ -40,11 +40,11 @@ class SoundManager extends BaseClass {
      * 播放音效
      * @param effectName
      */
-    public playEffect(effectName:string):void {
+    public playEffect(effectName:string):egret.SoundChannel {
         if (!this.effectOn)
             return;
 
-        this.effect.play(effectName);
+        return this.effect.play(effectName);
     }
 
     /**

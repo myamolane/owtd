@@ -1,6 +1,5 @@
 class TdSkillSelectPanel extends egret.Sprite {
     private group: eui.Group;
-    private static BasePath = "resource/assets/tdGame/skill/";
     private skills: Object = {};
     public constructor(skillNames: Array<string>) {
         super();
@@ -13,8 +12,8 @@ class TdSkillSelectPanel extends egret.Sprite {
         this.group.layout = hLayout;
         this.group.addEventListener(egret.Event.RESIZE, this.reposition, this);
         skillNames.forEach((skillName) => {
-            let skill = new eui.Image();
-            skill.source = TdSkillSelectPanel.BasePath + skillName + ".png";
+            let resName = "skill_"+skillName;
+            let skill = App.DisplayUtils.createEuiImage(resName)
             skill.name = skillName;
             skill.scaleX = 0.3;
             skill.scaleY = 0.3;

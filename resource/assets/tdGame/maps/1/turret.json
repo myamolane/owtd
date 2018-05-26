@@ -1,26 +1,281 @@
 {
-	"turret":[
+    "turret": [
         {
             "name": "turret_1",
-            "x": "32",
-            "y": "32",
-            "type": "turretskin0",
-            "skills": ["HighNoon"]
+            "x": "384",
+            "y": "0",
+            "type": "turretskin0"
         },
         {
             "name": "turret_2",
-            "x": "160",
-            "y": "96",
-            "type": "turretskin0",
-            "skills": []
+            "x": "384",
+            "y": "64",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_2",
+            "x": "512",
+            "y": "64",
+            "type": "turretskin0"
         },
         {
             "name": "turret_3",
-            "x": "160",
-            "y": "224",
-            "type": "turretskin0",
-            "skills": ["HighNoon"]
-        }
+            "x": "384",
+            "y": "128",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "512",
+            "y": "128",
+            "type": "turretskin0"
+        },
+                {
+            "name": "turret_3",
+            "x": "512",
+            "y": "192",
+            "type": "turretskin0"
+        },
+                {
+            "name": "turret_3",
+            "x": "512",
+            "y": "256",
+            "type": "turretskin0"
+        },
+                {
+            "name": "turret_3",
+            "x": "448",
+            "y": "256",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "384",
+            "y": "256",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "320",
+            "y": "256",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "320",
+            "y": "320",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "320",
+            "y": "384",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "384",
+            "y": "384",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "448",
+            "y": "384",
+            "type": "turretskin0"
+        },
+                {
+            "name": "turret_3",
+            "x": "448",
+            "y": "512",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "448",
+            "y": "576",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "448",
+            "y": "640",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "448",
+            "y": "704",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "448",
+            "y": "768",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "448",
+            "y": "832",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "448",
+            "y": "896",
+            "type": "turretskin0"
+        },
+                {
+            "name": "turret_3",
+            "x": "448",
+            "y": "960",
+            "type": "turretskin0"
+        },
+                {
+            "name": "turret_3",
+            "x": "384",
+            "y": "1024",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_3",
+            "x": "320",
+            "y": "1024",
+            "type": "turretskin0"
+        },
 
-	]
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "128",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_2",
+            "x": "256",
+            "y": "128",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "128",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "202",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "266",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "330",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "394",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "458",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "522",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "256",
+            "y": "522",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "522",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "586",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "650",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "714",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "778",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "842",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "320",
+            "y": "906",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "256",
+            "y": "906",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "192",
+            "y": "906",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "128",
+            "y": "906",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "128",
+            "y": "970",
+            "type": "turretskin0"
+        },
+        {
+            "name": "turret_1",
+            "x": "128",
+            "y": "1034",
+            "type": "turretskin0"
+        }
+    ]
 }

@@ -5,7 +5,7 @@ class TdGameMonster extends TdGameSprite {//implements IUpdate, ILoad{
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-
+        TdGameMonster.Total ++;
     }
 
     //public static type = ModuleType.Sprite;
@@ -75,6 +75,7 @@ class TdGameMonster extends TdGameSprite {//implements IUpdate, ILoad{
             this.parent.removeChild(this);
         }
         App.ModuleManager.unRegisterModule(this);
+        TdGameMonster.Total --;
     }
 
     public parse(obj: any): void {
@@ -95,7 +96,7 @@ class TdGameMonster extends TdGameSprite {//implements IUpdate, ILoad{
     private onHpChange(e: egret.Event): void {
         //this.hpImg.sethp(this.Hp, this.HpMax);
         if (this.hp <= 0) {
-            EventManager.dispatchEvent(TdEvents.SPRITE_DEAD, this);
+            EventManager.dispatchEvent(TdEvents.MONSTER_DEAD, this);
             this.release();
         }
     }

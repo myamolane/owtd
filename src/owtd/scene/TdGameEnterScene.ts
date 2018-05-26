@@ -15,12 +15,13 @@ class TdGameEnterScene extends BaseScene{
     public onEnter(...param:any[]):void{
         super.onEnter();
 
+        if (!App.GlobalData.level){
+            App.GlobalData.level = localStorage.getItem('level');
+            if (!App.GlobalData.level)
+                App.GlobalData.level = 1;
+        }
         //参数
-        let mapId:number
-        if (param && param.length > 0)
-            mapId = param[0];
-        else
-            mapId = 1; 
+
 
 
         //添加该Scene使用的Layer

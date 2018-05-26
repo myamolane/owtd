@@ -1,11 +1,88 @@
 {
     "groups": [
         {
-            "keys": "panel_bottom_png, panel_middle_png, panel_top_png,level1_png,level2_png, level2_locked_png, gold_icon, pack_icon, settings_icon, shop_icon,skill_HighNoon_png, bullet1,num_fnt,map_1_sprite_json,sprite1_left_json,sprite1_left_png,sprite1_up_json,sprite1_up_png,sprite1_down_json,sprite1_down_png,sprite1_right_json,sprite1_right_png,map_1_turret_json, panelbackground,turretskin,turretskin0_json,turretskin0_png,turretskin1_json,turretskin1_png,turretskin2_json,turretskin2_png,turretskin3_json,turretskin3_png,map_1_png,logo_twink_json,logo_twink_png,btn_close,home_bg,btn_wrong,bitmapFont,table_activity,table_bg,table_box_down,table_box_down_2,table_box_middle,table_box_up,table_cloud_top,table_cloud_bottom,btn_shrink_bg,btn_shrink,menu_bg,btn_mail,btn_mission,btn_activity,table_task,table_mail,task_bg,icon_diamond,icon_experience,icon_fertilization,icon_gold,icon_friend,icon_more,icon_shop,icon_warehouse,icon_factory,icon_name,icon_head,icon_line,icon_LV,icon_badge,table_shop,table_tittle,table_warehouse,icon_factory_tittle,tabBar_selected_down,text_fertilizer01,text_fertilizer02,text_seed01,text_seed02,tabBar_down,sto_table_tittle,card_bg,icon_fertilizer02,icon_fertilizer03,icon_fertilizer04,icon_fertilizer05,icon_02,bbs,text_fruit_01,text_fruit_02,text_fruit_juice_01,text_fruit_juice_02,icon_sale",
+            "keys": "highnoon_sound, skill_highnoon_json, enter_bg, equip_snowball, snowball_sound, equip_snowball_json, action_json, icon_error, icon_warning, icon_success, icon_back, icon_close, icon_info, music_volume_png, effect_volume_png,panel_bottom_png, panel_middle_png, panel_top_png,level1_png,level2_png, level2_locked_png, gold_icon, pack_icon, settings_icon, shop_icon,skill_highnoon, bullet1,num_fnt,map_1_sprite_json,sprite1_left_json,sprite1_left_png,sprite1_up_json,sprite1_up_png,sprite1_down_json,sprite1_down_png,sprite1_right_json,sprite1_right_png,map_1_turret_json, panelbackground,turretskin,turretskin0_json,turretskin0_png,turretskin1_json,turretskin1_png,turretskin2_json,turretskin2_png,turretskin3_json,turretskin3_png,map_1_png,logo_twink_json,logo_twink_png,btn_close,home_bg,btn_wrong,bitmapFont,table_activity,table_bg,table_box_down,table_box_down_2,table_box_middle,table_box_up,table_cloud_top,table_cloud_bottom,btn_shrink_bg,btn_shrink,menu_bg,btn_mail,btn_mission,btn_activity,table_task,table_mail,task_bg,icon_diamond,icon_experience,icon_fertilization,icon_gold,icon_friend,icon_more,icon_shop,icon_warehouse,icon_factory,icon_name,icon_head,icon_line,icon_LV,icon_badge,table_shop,table_tittle,table_warehouse,icon_factory_tittle,tabBar_selected_down,text_fertilizer01,text_fertilizer02,text_seed01,text_seed02,tabBar_down,sto_table_tittle,card_bg,icon_fertilizer02,icon_fertilizer03,icon_fertilizer04,icon_fertilizer05,icon_02,bbs,text_fruit_01,text_fruit_02,text_fruit_juice_01,text_fruit_juice_02,icon_sale",
             "name": "preload_ui"
         }
     ],
     "resources": [
+        {
+            "name": "skill_highnoon_json",
+            "type": "json",
+            "url": "assets/tdGame/skill/highnoon.json"
+        },
+        {
+            "name": "enter_bg",
+            "type": "image",
+            "url": "assets/enter_bg.png"
+        },
+        {
+            "name": "equip_snowball",
+            "type": "image",
+            "url": "assets/tdGame/equipments/snowball.png"
+        },
+        {
+            "name": "snowball_sound",
+            "type": "sound",
+            "soundType": "effect",
+            "url": "assets/tdGame/sound/snowball.mp3"
+        },
+        {
+            "name": "highnoon_sound",
+            "type": "sound",
+            "soundType": "effect",
+            "url": "assets/tdGame/sound/highnoon.mp3"
+        },
+        {
+            "name": "equip_snowball_json",
+            "type": "json",
+            "url": "assets/tdGame/equipments/equip_snowball.json"
+        },
+        {
+            "name": "action_json",
+            "type": "json",
+            "url": "assets/tdGame/action.json"
+        },
+        {
+            "name": "icon_warning",
+            "type": "image",
+            "url": "assets/tdGame/icons/icon_warning.png"
+        },
+        {
+            "name": "icon_error",
+            "type": "image",
+            "url": "assets/tdGame/icons/icon_error.png"
+        },
+        {
+            "name": "icon_success",
+            "type": "image",
+            "url": "assets/tdGame/icons/icon_success.png"
+        },
+        {
+            "name": "icon_back",
+            "type": "image",
+            "url": "assets/tdGame/icons/icon_back.png"
+        },
+        {
+            "name": "icon_close",
+            "type": "image",
+            "url": "assets/tdGame/icons/icon_close.png"
+        },
+        {
+            "name": "icon_info",
+            "type": "image",
+            "url": "assets/tdGame/icons/icon_info.png"
+        },
+        {
+            "name": "music_volume_png",
+            "type": "image",
+            "url": "assets/ui/music_volume.png"
+        },
+        {
+            "name": "effect_volume_png",
+            "type": "image",
+            "url": "assets/ui/effect_volume.png"
+        },
         {
             "name": "panel_bottom_png",
             "type": "image",
@@ -57,7 +134,7 @@
             "url": "assets/tdGame/icon/settings.png"
         },
         {
-            "name": "skill_HighNoon_png",
+            "name": "skill_highnoon",
             "type": "image",
             "url": "assets/tdGame/skill/HighNoon.png"
         },

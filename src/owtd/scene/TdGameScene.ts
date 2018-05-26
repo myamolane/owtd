@@ -50,6 +50,6 @@ class TdGameScene extends BaseScene{
         super.onExit();
 
         //关闭ComponentSystem
-        ComponentSystem.stop();
+        //ComponentSystem.stop();
     }
 }
